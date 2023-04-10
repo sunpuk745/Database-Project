@@ -1,4 +1,16 @@
 <?php
+
+session_start();
+
+    include("connection.php");
+    include("function.php");
+
+    $user_data = check_login($con);
+
+if (!isset($_SESSION['user_id'])) {
+    header("Location: login.php");
+    die;
+}
 // connect to the database
 $servername = "localhost";
 $username = "root";
@@ -6,10 +18,10 @@ $password = "";
 $dbname = "football_tournament";
 
 // Create connection
-$conn = mysqli_connect($servername, $username, $password, $dbname);
+$conn_football = mysqli_connect($servername, $username, $password, $dbname);
 
 // Check connection
-if (!$conn) {
+if (!$conn_football) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
@@ -32,11 +44,11 @@ $sql_football = "SELECT matches.match_id, matches.date, matches.time, team1.team
 $sql_football .= " GROUP BY matches.match_id
                     ORDER BY matches.date, matches.time;";
 
-$result_football = mysqli_query($conn, $sql_football);
+$result_football = mysqli_query($conn_football, $sql_football);
 
 // fetch volleyball schedules
 $dbname = "volleyball_tournament";
-$conn = mysqli_connect($servername, $username, $password, $dbname);
+$conn_volleyball = mysqli_connect($servername, $username, $password, $dbname);
 
 $sql_volleyball = "SELECT matches.match_id, matches.date, matches.time, team1.team_name AS team1_name, team2.team_name AS team2_name, matches.result,
                     GROUP_CONCAT(DISTINCT player1.player_name SEPARATOR ', ') AS team1_players,
@@ -54,11 +66,11 @@ $sql_volleyball = "SELECT matches.match_id, matches.date, matches.time, team1.te
 $sql_volleyball .= " GROUP BY matches.match_id
                     ORDER BY matches.date, matches.time;";
 
-$result_volleyball = mysqli_query($conn, $sql_volleyball);
+$result_volleyball = mysqli_query($conn_volleyball, $sql_volleyball);
 
 // fetch basketball schedules
 $dbname = "basketball_tournament";
-$conn = mysqli_connect($servername, $username, $password, $dbname);
+$conn_basketball = mysqli_connect($servername, $username, $password, $dbname);
 
 $sql_basketball = "SELECT matches.match_id, matches.date, matches.time, team1.team_name AS team1_name, team2.team_name AS team2_name, matches.result,
                     GROUP_CONCAT(DISTINCT player1.player_name SEPARATOR ', ') AS team1_players,
@@ -76,7 +88,7 @@ $sql_basketball = "SELECT matches.match_id, matches.date, matches.time, team1.te
     $sql_basketball .= " GROUP BY matches.match_id
                         ORDER BY matches.date, matches.time;";
 
-$result_basketball = mysqli_query($conn, $sql_basketball);
+$result_basketball = mysqli_query($conn_basketball, $sql_basketball);
 // Display the match schedule in a table format
 echo "<style>
 table {
@@ -110,6 +122,25 @@ table {
     display: block;
     margin-left: auto;
     margin-right: auto;
+  }
+  .logout-button {
+    background-color: red; 
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+}
+  .logout-button:hover {
+    background-color: darkred;
+  }
+  
+  .logout-button:focus {
+    outline: none;
+    box-shadow: none;
   }
 </style>";
 // display the schedules
@@ -182,6 +213,10 @@ while ($row = mysqli_fetch_assoc($result_basketball)) {
 echo "</table>";
 
 ?>
+
+<form action="logout.php" method="post">
+    <button class="logout-button" type="submit" name="logout">Logout</button>
+  </form>
 <body background='background.jpg'>
     <script>
         function showTeamPlayers(players) {

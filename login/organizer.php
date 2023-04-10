@@ -213,7 +213,6 @@ table {
   .result-button:hover {
     background-color: #3e8e41;
   }
-
   .logout-button {
     background-color: red; 
     color: white;
@@ -224,7 +223,7 @@ table {
     position: fixed;
     bottom: 20px;
     right: 20px;
-}
+  }
   .logout-button:hover {
     background-color: darkred;
   }
@@ -233,7 +232,6 @@ table {
     outline: none;
     box-shadow: none;
   }
-  
 </style>";
 // display the schedules
 echo "<h1 style='text-align: center;'>All Sports Schedule</h1>";

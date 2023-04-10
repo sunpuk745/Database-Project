@@ -1,4 +1,16 @@
 <?php
+
+session_start();
+
+    include("connection.php");
+    include("function.php");
+
+    $user_data = check_login($con);
+
+if (!isset($_SESSION['user_id'])) {
+    header("Location: login.php");
+    die;
+}
 // connect to the database
 $servername = "localhost";
 $username = "root";
@@ -124,6 +136,25 @@ table {
     margin-left: auto;
     margin-right: auto;
   }
+  .logout-button {
+    background-color: red; 
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+  }
+  .logout-button:hover {
+    background-color: darkred;
+  }
+  
+  .logout-button:focus {
+    outline: none;
+    box-shadow: none;
+  }
 </style>";
 // display the schedules
 echo "<img src='sportsday.png' width='500' class='center' vspace='30'>";
@@ -223,6 +254,11 @@ while ($row = mysqli_fetch_assoc($result_basketball)) {
 echo "</table>";
 
 ?>
+
+<form action="logout.php" method="post">
+    <button class="logout-button" type="submit" name="logout">Logout</button>
+  </form>
+
 <body background='background.jpg'>
     <script>
         function showTeamPlayers(players) {

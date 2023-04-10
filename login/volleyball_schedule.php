@@ -1,14 +1,26 @@
 <?php
 
+session_start();
+
+    include("connection.php");
+    include("function.php");
+
+    $user_data = check_login($con);
+
+if (!isset($_SESSION['user_id'])) {
+    header("Location: login.php");
+    die;
+}
+
 // Connect to the database
 $servername = "localhost";
 $username = "root";
 $password = "";
 $dbname = "volleyball_tournament";
 
-$conn = mysqli_connect($servername, $username, $password, $dbname);
+$conn_volleyball = mysqli_connect($servername, $username, $password, $dbname);
 
-if (!$conn) {
+if (!$conn_volleyball) {
   die("Connection failed: " . mysqli_connect_error());
 }
 
@@ -25,7 +37,7 @@ $sql = "SELECT matches.match_id, matches.date, matches.time, team1.team_name AS 
             ORDER BY matches.date, matches.time;
             ";
 
-$result = mysqli_query($conn, $sql);
+$result = mysqli_query($conn_volleyball, $sql);
 
 if (!$result) {
   die("Error: " . $sql . "<br>" . mysqli_error($conn));
@@ -65,6 +77,25 @@ table {
     margin-left: auto;
     margin-right: auto;
   }
+  .logout-button {
+    background-color: red; 
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+  }
+  .logout-button:hover {
+    background-color: darkred;
+  }
+  
+  .logout-button:focus {
+    outline: none;
+    box-shadow: none;
+  }
 </style>";
 
 echo "<table>";
@@ -88,6 +119,11 @@ while ($row = mysqli_fetch_assoc($result)) {
 echo "</table>";
 
 ?>
+
+<form action="logout.php" method="post">
+    <button class="logout-button" type="submit" name="logout">Logout</button>
+  </form>
+
 <body background='background.jpg'>
   <script>
       function showTeamPlayers(players) {
