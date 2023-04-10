@@ -33,17 +33,17 @@ session_start();
 						
 						if($user_name == 'organizer')
 						{
-							header("Location: index.php");
+							header("Location: organizer.php");
 							die;
 						}
 						else if($user_name == 'competitor')
 						{
-							header("Location: index2.php");
+							header("Location: competitor.php");
 							die;
 						}
 						else
 						{
-							header("Location: index3.php");
+							header("Location: spectator.php");
 							die;
 						}
 					}
