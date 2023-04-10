@@ -14,6 +14,7 @@ if (!$conn_football) {
 }
 
 $player_filter = isset($_GET['player_filter']) ? $_GET['player_filter'] : '';
+$date_filter = isset($_GET['date_filter']) ? $_GET['date_filter'] : '';
 
       
 // fetch football schedules
@@ -24,10 +25,16 @@ $sql_football = "SELECT matches.match_id, matches.date, matches.time, team1.team
                     INNER JOIN teams AS team1 ON matches.team_1 = team1.team_id
                     INNER JOIN teams AS team2 ON matches.team_2 = team2.team_id
                     INNER JOIN players AS player1 ON matches.team_1 = player1.team_id
-                    INNER JOIN players AS player2 ON matches.team_2 = player2.team_id
-                    WHERE player1.player_name LIKE '%$player_filter%' OR player2.player_name LIKE '%$player_filter%'
-                    GROUP BY matches.match_id
-                    ORDER BY matches.date, matches.time;";
+                    INNER JOIN players AS player2 ON matches.team_2 = player2.team_id";
+                    if (isset($_GET['player_filter'])) {
+                        $sql_football .= " WHERE player1.player_name LIKE '%$player_filter%' OR player2.player_name LIKE '%$player_filter%'";
+                    }
+                    if (isset($_GET['date_filter'])) {
+                        $sql_football .= "  WHERE matches.date = '$date_filter'";
+                    }
+
+    $sql_football .= " GROUP BY matches.match_id
+                        ORDER BY matches.date, matches.time;";
 
 $result_football = mysqli_query($conn_football, $sql_football);
 
@@ -41,10 +48,16 @@ $sql_volleyball = "SELECT matches.match_id, matches.date, matches.time, team1.te
                     INNER JOIN teams AS team1 ON matches.team_1 = team1.team_id
                     INNER JOIN teams AS team2 ON matches.team_2 = team2.team_id
                     INNER JOIN players AS player1 ON matches.team_1 = player1.team_id
-                    INNER JOIN players AS player2 ON matches.team_2 = player2.team_id
-                    WHERE player1.player_name LIKE '%$player_filter%' OR player2.player_name LIKE '%$player_filter%'
-                    GROUP BY matches.match_id
-                    ORDER BY matches.date, matches.time;";
+                    INNER JOIN players AS player2 ON matches.team_2 = player2.team_id";
+                    if (isset($_GET['player_filter'])) {
+                        $sql_volleyball .= " WHERE player1.player_name LIKE '%$player_filter%' OR player2.player_name LIKE '%$player_filter%'";
+                    }
+                    if (isset($_GET['date_filter'])) {
+                        $sql_volleyball .= "  WHERE matches.date = '$date_filter'";
+                    }
+
+    $sql_volleyball .= " GROUP BY matches.match_id
+                        ORDER BY matches.date, matches.time;";
 
 $result_volleyball = mysqli_query($conn_volleyball, $sql_volleyball);
 
@@ -58,11 +71,16 @@ $sql_basketball = "SELECT matches.match_id, matches.date, matches.time, team1.te
                     INNER JOIN teams AS team1 ON matches.team_1 = team1.team_id
                     INNER JOIN teams AS team2 ON matches.team_2 = team2.team_id
                     INNER JOIN players AS player1 ON matches.team_1 = player1.team_id
-                    INNER JOIN players AS player2 ON matches.team_2 = player2.team_id
-                    WHERE player1.player_name LIKE '%$player_filter%' OR player2.player_name LIKE '%$player_filter%'
-                    GROUP BY matches.match_id
-                    ORDER BY matches.date, matches.time;";
+                    INNER JOIN players AS player2 ON matches.team_2 = player2.team_id";
+                    if (isset($_GET['player_filter'])) {
+                        $sql_basketball .= " WHERE player1.player_name LIKE '%$player_filter%' OR player2.player_name LIKE '%$player_filter%'";
+                    }
+                    if (isset($_GET['date_filter'])) {
+                        $sql_basketball .= "  WHERE matches.date = '$date_filter'";
+                    }
 
+                        $sql_basketball .= " GROUP BY matches.match_id
+                                ORDER BY matches.date, matches.time;";
 $result_basketball = mysqli_query($conn_basketball, $sql_basketball);
 
 
@@ -130,6 +148,12 @@ echo "<form method='get' style='text-align: center;'>
 echo "</select>
         <button type='submit'>กรอง</button>
         </form>";
+
+echo "<form method='get' style='text-align: center;'>
+        <label for='date_filter'>วันที่:</label>
+        <input type='date' id='date_filter' name='date_filter' value='$date_filter'>
+        <button type='submit'>กรอง</button>
+      </form>";
 
 // display football schedules
 echo "<h2 style='text-align: center;'>Football Schedule</h2>";
