@@ -45,10 +45,14 @@ if (!isset($_SESSION['user_id'])) {
 		#button:hover {
 			background-color: #3e8e41;
 		}
+		#center {
+			display: block;
+			margin-left: auto;
+			margin-right: auto;
+		}
 	</style>
 </head>
-<body>
-
+<body background='background.jpg'>
 	<div id="box">
 		
 		<form method="post">

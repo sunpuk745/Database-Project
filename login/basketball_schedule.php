@@ -37,6 +37,7 @@ table {
     margin: auto;
     border-collapse: collapse;
     width: 80%;
+    background-color: white;
   }
   th, td {
     padding: 8px;
@@ -59,9 +60,15 @@ table {
     margin: 4px 2px;
     cursor: pointer;
   }
+  .center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
 </style>";
 
 echo "<table>";
+echo "<img src='basketball.jpg' width='500' class='center' vspace='30'>";
 echo "<h1 style='text-align: center;'>Basketball Schedule</h1>";
 echo "<tr><th>Match ID</th><th>Date</th><th>Time</th><th>Team 1</th><th>Players</th><th>Team 2</th><th>Players</th><th>Result</th></tr>";
 
@@ -81,60 +88,61 @@ while ($row = mysqli_fetch_assoc($result)) {
 echo "</table>";
 
 ?>
+<body background='background.jpg'>
+  <script>
+      function showTeamPlayers(players) {
+      var playersArray = players.split(', ');
+      var playerList = '';
 
-<script>
-    function showTeamPlayers(players) {
-    var playersArray = players.split(', ');
-    var playerList = '';
+      for (var i = 0; i < playersArray.length; i++) {
+          playerList += (i+1) + '. ' + playersArray[i] + '\n';
+      }
 
-    for (var i = 0; i < playersArray.length; i++) {
-        playerList += (i+1) + '. ' + playersArray[i] + '\n';
-    }
+      var dialog = document.createElement('div');
+      dialog.style.width = '300px';
+      dialog.style.height = '300px';
+      dialog.style.backgroundColor = '#fff';
+      dialog.style.border = '1px solid #ccc';
+      dialog.style.borderRadius = '5px';
+      dialog.style.padding = '20px';
+      dialog.style.position = 'fixed';
+      dialog.style.top = '50%';
+      dialog.style.left = '50%';
+      dialog.style.transform = 'translate(-50%, -50%)';
+      dialog.style.zIndex = '9999';
+      
+      var title = document.createElement('h3');
+      title.innerHTML = 'Players';
+      title.style.marginTop = '0';
+      
+      var list = document.createElement('textarea');
+      list.innerHTML = playerList;
+      list.style.width = '100%';
+      list.style.height = '200px';
+      list.style.resize = 'none';
+      
+      var closeButton = document.createElement('button');
+      closeButton.innerHTML = 'Close';
+      closeButton.style.backgroundColor = '#4CAF50';
+      closeButton.style.border = 'none';
+      closeButton.style.color = '#fff';
+      closeButton.style.padding = '8px 16px';
+      closeButton.style.textAlign = 'center';
+      closeButton.style.textDecoration = 'none';
+      closeButton.style.fontSize = '14px';
+      closeButton.style.marginTop = '20px';
+      closeButton.style.cursor = 'pointer';
+      
+      closeButton.onclick = function() {
+          document.body.removeChild(dialog);
+      }
+      
+      dialog.appendChild(title);
+      dialog.appendChild(list);
+      dialog.appendChild(closeButton);
+      
+      document.body.appendChild(dialog);
+  }
 
-    var dialog = document.createElement('div');
-    dialog.style.width = '300px';
-    dialog.style.height = '300px';
-    dialog.style.backgroundColor = '#fff';
-    dialog.style.border = '1px solid #ccc';
-    dialog.style.borderRadius = '5px';
-    dialog.style.padding = '20px';
-    dialog.style.position = 'fixed';
-    dialog.style.top = '50%';
-    dialog.style.left = '50%';
-    dialog.style.transform = 'translate(-50%, -50%)';
-    dialog.style.zIndex = '9999';
-    
-    var title = document.createElement('h3');
-    title.innerHTML = 'Players';
-    title.style.marginTop = '0';
-    
-    var list = document.createElement('textarea');
-    list.innerHTML = playerList;
-    list.style.width = '100%';
-    list.style.height = '200px';
-    list.style.resize = 'none';
-    
-    var closeButton = document.createElement('button');
-    closeButton.innerHTML = 'Close';
-    closeButton.style.backgroundColor = '#4CAF50';
-    closeButton.style.border = 'none';
-    closeButton.style.color = '#fff';
-    closeButton.style.padding = '8px 16px';
-    closeButton.style.textAlign = 'center';
-    closeButton.style.textDecoration = 'none';
-    closeButton.style.fontSize = '14px';
-    closeButton.style.marginTop = '20px';
-    closeButton.style.cursor = 'pointer';
-    
-    closeButton.onclick = function() {
-        document.body.removeChild(dialog);
-    }
-    
-    dialog.appendChild(title);
-    dialog.appendChild(list);
-    dialog.appendChild(closeButton);
-    
-    document.body.appendChild(dialog);
-}
-
-</script>
+  </script>
+</body>
