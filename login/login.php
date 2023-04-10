@@ -30,8 +30,22 @@ session_start();
 					{
 
 						$_SESSION['user_id'] = $user_data['user_id'];
-						header("Location: index.php");
-						die;
+						
+						if($user_name == 'organizer')
+						{
+							header("Location: index.php");
+							die;
+						}
+						else if($user_name == 'competitor')
+						{
+							header("Location: index2.php");
+							die;
+						}
+						else
+						{
+							header("Location: index3.php");
+							die;
+						}
 					}
 				}
 			}
@@ -68,14 +82,14 @@ session_start();
 
 		padding: 10px;
 		width: 100px;
-		color: white;
-		background-color: lightblue;
+		color: black;
+		background-color: white;
 		border: none;
 	}
 
 	#box{
 
-		background-color: grey;
+		background-color: lightblue;
 		margin: auto;
 		width: 300px;
 		padding: 20px;
@@ -86,10 +100,10 @@ session_start();
 	<div id="box">
 		
 		<form method="post">
-			<div style="font-size: 20px;margin: 10px;color: white;">Login</div>
+			<div style="font-size: 20px;margin: 10px;color: black;">Login</div>
 
-			<input id="text" type="text" name="user_name"><br><br>
-			<input id="text" type="password" name="password"><br><br>
+			<input id="text" type="text" name="user_name" placeholder="Enter your username" onfocus="this.placeholder=''" onblur="this.placeholder='Enter your username'"><br><br>
+			<input id="text" type="password" name="password" placeholder="Enter your password" onfocus="this.placeholder=''" onblur="this.placeholder='Enter your password'"><br><br>
 
 			<input id="button" type="submit" value="Login"><br><br>
 		</form>
