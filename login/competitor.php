@@ -1,23 +1,245 @@
 <?php
-session_start();
+// connect to the database
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "football_tournament";
 
-    include("connection.php");
-    include("function.php");
+// Create connection
+$conn_football = mysqli_connect($servername, $username, $password, $dbname);
 
-    $user_data = check_login($con);
+// Check connection
+if (!$conn_football) {
+    die("Connection failed: " . mysqli_connect_error());
+}
+
+$player_filter = isset($_GET['player_filter']) ? $_GET['player_filter'] : '';
+// fetch football schedules
+$sql_football = "SELECT matches.match_id, matches.date, matches.time, team1.team_name AS team1_name, team2.team_name AS team2_name, matches.result,
+                    GROUP_CONCAT(DISTINCT player1.player_name SEPARATOR ', ') AS team1_players,
+                    GROUP_CONCAT(DISTINCT player2.player_name SEPARATOR ', ') AS team2_players
+                    FROM matches
+                    INNER JOIN teams AS team1 ON matches.team_1 = team1.team_id
+                    INNER JOIN teams AS team2 ON matches.team_2 = team2.team_id
+                    INNER JOIN players AS player1 ON matches.team_1 = player1.team_id
+                    INNER JOIN players AS player2 ON matches.team_2 = player2.team_id
+                    WHERE player1.player_name LIKE '%$player_filter%' OR player2.player_name LIKE '%$player_filter%'
+                    GROUP BY matches.match_id
+                    ORDER BY matches.date, matches.time;";
+
+$result_football = mysqli_query($conn_football, $sql_football);
+
+// fetch volleyball schedules
+$conn_volleyball = mysqli_connect($servername, $username, $password, "volleyball_tournament");
+
+$sql_volleyball = "SELECT matches.match_id, matches.date, matches.time, team1.team_name AS team1_name, team2.team_name AS team2_name, matches.result,
+                    GROUP_CONCAT(DISTINCT player1.player_name SEPARATOR ', ') AS team1_players,
+                    GROUP_CONCAT(DISTINCT player2.player_name SEPARATOR ', ') AS team2_players
+                    FROM matches
+                    INNER JOIN teams AS team1 ON matches.team_1 = team1.team_id
+                    INNER JOIN teams AS team2 ON matches.team_2 = team2.team_id
+                    INNER JOIN players AS player1 ON matches.team_1 = player1.team_id
+                    INNER JOIN players AS player2 ON matches.team_2 = player2.team_id
+                    WHERE player1.player_name LIKE '%$player_filter%' OR player2.player_name LIKE '%$player_filter%'
+                    GROUP BY matches.match_id
+                    ORDER BY matches.date, matches.time;";
+
+$result_volleyball = mysqli_query($conn_volleyball, $sql_volleyball);
+
+// fetch basketball schedules
+$conn_basketball = mysqli_connect($servername, $username, $password, "basketball_tournament");
+
+$sql_basketball = "SELECT matches.match_id, matches.date, matches.time, team1.team_name AS team1_name, team2.team_name AS team2_name, matches.result,
+                    GROUP_CONCAT(DISTINCT player1.player_name SEPARATOR ', ') AS team1_players,
+                    GROUP_CONCAT(DISTINCT player2.player_name SEPARATOR ', ') AS team2_players
+                    FROM matches
+                    INNER JOIN teams AS team1 ON matches.team_1 = team1.team_id
+                    INNER JOIN teams AS team2 ON matches.team_2 = team2.team_id
+                    INNER JOIN players AS player1 ON matches.team_1 = player1.team_id
+                    INNER JOIN players AS player2 ON matches.team_2 = player2.team_id
+                    WHERE player1.player_name LIKE '%$player_filter%' OR player2.player_name LIKE '%$player_filter%'
+                    GROUP BY matches.match_id
+                    ORDER BY matches.date, matches.time;";
+
+$result_basketball = mysqli_query($conn_basketball, $sql_basketball);
+
+// Display the match schedule in a table format
+echo "<style>
+table {
+    margin: auto;
+    border-collapse: collapse;
+    width: 80%;
+  }
+  th, td {
+    padding: 8px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+  }
+  th {
+    background-color: #4CAF50;
+    color: white;
+  }
+  .players-button {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 8px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 4px 2px;
+    cursor: pointer;
+  }
+</style>";
+// display the schedules
+echo "<h1 style='text-align: center;'>All Sports Schedule</h1>";
+
+// display football schedules
+echo "<h2 style='text-align: center;'>Football Schedule</h2>";
+echo "<table>";
+echo "<tr><th>Match ID</th><th>Date</th><th>Time</th><th>Team 1</th><th>Players</th><th>Team 2</th><th>Players</th><th>Result</th></tr>";
+
+while ($row = mysqli_fetch_assoc($result_football)) {
+    echo "<tr>";
+    echo "<td>" . $row['match_id'] . "</td>";
+    echo "<td>" . $row['date'] . "</td>";
+    echo "<td>" . $row['time'] . "</td>";
+    echo "<td>" . $row['team1_name'] . "</td>";
+    echo "<td><button class='players-button' onclick=\"showTeamPlayers('" . $row['team1_players'] . "')\">View Players</button></td>";
+    echo "<td>" . $row['team2_name'] . "</td>";
+    echo "<td><button class='players-button' onclick=\"showTeamPlayers('" . $row['team2_players'] . "')\">View Players</button></td>";
+    echo "<td>" . $row['result'] . "</td>";
+    echo "</tr>";
+}
+
+echo "</table>";
+
+// display volleyball schedules
+echo "<h2 style='text-align: center;'>Volleyball Schedule</h2>";
+echo "<table>";
+echo "<tr><th>Match ID</th><th>Date</th><th>Time</th><th>Team 1</th><th>Players</th><th>Team 2</th><th>Players</th><th>Result</th></tr>";
+
+while ($row = mysqli_fetch_assoc($result_volleyball)) {
+    echo "<tr>";
+    echo "<td>" . $row['match_id'] . "</td>";
+    echo "<td>" . $row['date'] . "</td>";
+    echo "<td>" . $row['time'] . "</td>";
+    echo "<td>" . $row['team1_name'] . "</td>";
+    echo "<td><button class='players-button' onclick=\"showTeamPlayers('" . $row['team1_players'] . "')\">View Players</button></td>";
+    echo "<td>" . $row['team2_name'] . "</td>";
+    echo "<td><button class='players-button' onclick=\"showTeamPlayers('" . $row['team2_players'] . "')\">View Players</button></td>";
+    echo "<td>" . $row['result'] . "</td>";
+    echo "</tr>";
+}
+
+echo "</table>";
+
+// display basketball schedules
+echo "<h2 style='text-align: center;'>Basketball Schedule</h2>";
+echo "<table>";
+echo "<tr><th>Match ID</th><th>Date</th><th>Time</th><th>Team 1</th><th>Players</th><th>Team 2</th><th>Players</th><th>Result</th></tr>";
+
+while ($row = mysqli_fetch_assoc($result_basketball)) {
+    echo "<tr>";
+    echo "<td>" . $row['match_id'] . "</td>";
+    echo "<td>" . $row['date'] . "</td>";
+    echo "<td>" . $row['time'] . "</td>";
+    echo "<td>" . $row['team1_name'] . "</td>";
+    echo "<td><button class='players-button' onclick=\"showTeamPlayers('" . $row['team1_players'] . "')\">View Players</button></td>";
+    echo "<td>" . $row['team2_name'] . "</td>";
+    echo "<td><button class='players-button' onclick=\"showTeamPlayers('" . $row['team2_players'] . "')\">View Players</button></td>";
+    echo "<td>" . $row['result'] . "</td>";
+    echo "</tr>";
+}
+
+echo "</table>";
+
 ?>
 
-<!DOCTYPE html>
-<html>
-<head>
-    <title>My Sport Website</title>
-</head>
-<body>
+<form method="GET">
+    <label for="player_filter">กรองโดยชื่อนักกีฬา:</label>
+    <select id="player_filter" name="player_filter">
+        <option value="">--ทุกนักกีฬา--</option>
+        <?php
+        $sql_players = "SELECT DISTINCT player_name FROM (
+                            SELECT player_name FROM football_tournament.players
+                            UNION
+                            SELECT player_name FROM volleyball_tournament.players
+                            UNION
+                            SELECT player_name FROM basketball_tournament.players
+                        ) AS all_players ORDER BY player_name;";
+        $result_players = mysqli_query($conn_football, $sql_players);
+        while ($row_players = mysqli_fetch_assoc($result_players)) {
+            $player_name = $row_players['player_name'];
+            $selected = ($player_filter == $player_name) ? 'selected' : '';
+            echo "<option value=\"$player_name\" $selected>$player_name</option>";
+        }
+        ?>
+    </select>
+    <button type="submit">กรอง</button>
+</form>
 
-    <a href="logout.php">Logout</a>
-    <h1>This is index page</h1>
+<form method="get" action="">
+  <label for="player_filter">กรองโดยชื่อนักกีฬา:</label>
+  <input type="text" name="player_filter" id="player_filter">
+  <input type="submit" value="กรอง">
+</form>
+
+
+<script>
+    function showTeamPlayers(players) {
+    var playersArray = players.split(', ');
+    var playerList = '';
+
+    for (var i = 0; i < playersArray.length; i++) {
+        playerList += (i+1) + '. ' + playersArray[i] + '\n';
+    }
+
+    var dialog = document.createElement('div');
+    dialog.style.width = '300px';
+    dialog.style.height = '300px';
+    dialog.style.backgroundColor = '#fff';
+    dialog.style.border = '1px solid #ccc';
+    dialog.style.borderRadius = '5px';
+    dialog.style.padding = '20px';
+    dialog.style.position = 'fixed';
+    dialog.style.top = '50%';
+    dialog.style.left = '50%';
+    dialog.style.transform = 'translate(-50%, -50%)';
+    dialog.style.zIndex = '9999';
     
-    <br>
-    Hello, 12345678910.
-</body>
-</html>
+    var title = document.createElement('h3');
+    title.innerHTML = 'Players';
+    title.style.marginTop = '0';
+    
+    var list = document.createElement('textarea');
+    list.innerHTML = playerList;
+    list.style.width = '100%';
+    list.style.height = '200px';
+    list.style.resize = 'none';
+    
+    var closeButton = document.createElement('button');
+    closeButton.innerHTML = 'Close';
+    closeButton.style.backgroundColor = '#4CAF50';
+    closeButton.style.border = 'none';
+    closeButton.style.color = '#fff';
+    closeButton.style.padding = '8px 16px';
+    closeButton.style.textAlign = 'center';
+    closeButton.style.textDecoration = 'none';
+    closeButton.style.fontSize = '14px';
+    closeButton.style.marginTop = '20px';
+    closeButton.style.cursor = 'pointer';
+    
+    closeButton.onclick = function() {
+        document.body.removeChild(dialog);
+    }
+    
+    dialog.appendChild(title);
+    dialog.appendChild(list);
+    dialog.appendChild(closeButton);
+    
+    document.body.appendChild(dialog);
+}
+
+</script>
