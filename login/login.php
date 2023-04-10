@@ -65,7 +65,7 @@ session_start();
 <head>
 	<title>Login</title>
 </head>
-<body>
+<body background='background.jpg'>
 
 	<style type="text/css">
 	
@@ -84,15 +84,16 @@ session_start();
 		width: 80px;
 		color: black;
 		background-color: white;
-		border: none;
+		border: solid thin #aaa;
 	}
 
 	#box{
 
-		background-color: lightblue;
+		background-color: white;
 		margin: auto;
 		width: 300px;
 		padding: 20px;
+		margin-top: 80px;
 	}
 
 	</style>
