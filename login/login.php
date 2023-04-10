@@ -81,7 +81,7 @@ session_start();
 	#button{
 
 		padding: 10px;
-		width: 100px;
+		width: 80px;
 		color: black;
 		background-color: white;
 		border: none;

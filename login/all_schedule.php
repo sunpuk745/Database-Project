@@ -101,8 +101,8 @@ echo "<tr><th>Match ID</th><th>Date</th><th>Time</th><th>Team 1</th><th>Players<
 while ($row = mysqli_fetch_assoc($result_football)) {
     echo "<tr>";
     echo "<td>" . $row['match_id'] . "</td>";
-    echo "<td>" . $row['date'] . "</td>";
-    echo "<td>" . $row['time'] . "</td>";
+    echo "<td>" . date("d F Y", strtotime($row['date'])) . "</td>";
+    echo "<td>" . date("H:i", strtotime($row['time'])) . "</td>";
     echo "<td>" . $row['team1_name'] . "</td>";
     echo "<td><button class='players-button' onclick=\"showTeamPlayers('" . $row['team1_players'] . "')\">View Players</button></td>";
     echo "<td>" . $row['team2_name'] . "</td>";
@@ -121,8 +121,8 @@ echo "<tr><th>Match ID</th><th>Date</th><th>Time</th><th>Team 1</th><th>Players<
 while ($row = mysqli_fetch_assoc($result_volleyball)) {
     echo "<tr>";
     echo "<td>" . $row['match_id'] . "</td>";
-    echo "<td>" . $row['date'] . "</td>";
-    echo "<td>" . $row['time'] . "</td>";
+    echo "<td>" . date("d F Y", strtotime($row['date'])) . "</td>";
+    echo "<td>" . date("H:i", strtotime($row['time'])) . "</td>";
     echo "<td>" . $row['team1_name'] . "</td>";
     echo "<td><button class='players-button' onclick=\"showTeamPlayers('" . $row['team1_players'] . "')\">View Players</button></td>";
     echo "<td>" . $row['team2_name'] . "</td>";
@@ -141,8 +141,8 @@ echo "<tr><th>Match ID</th><th>Date</th><th>Time</th><th>Team 1</th><th>Players<
 while ($row = mysqli_fetch_assoc($result_basketball)) {
     echo "<tr>";
     echo "<td>" . $row['match_id'] . "</td>";
-    echo "<td>" . $row['date'] . "</td>";
-    echo "<td>" . $row['time'] . "</td>";
+    echo "<td>" . date("d F Y", strtotime($row['date'])) . "</td>";
+    echo "<td>" . date("H:i", strtotime($row['time'])) . "</td>";
     echo "<td>" . $row['team1_name'] . "</td>";
     echo "<td><button class='players-button' onclick=\"showTeamPlayers('" . $row['team1_players'] . "')\">View Players</button></td>";
     echo "<td>" . $row['team2_name'] . "</td>";

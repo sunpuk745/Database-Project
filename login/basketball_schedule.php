@@ -62,13 +62,14 @@ table {
 </style>";
 
 echo "<table>";
+echo "<h1 style='text-align: center;'>Basketball Schedule</h1>";
 echo "<tr><th>Match ID</th><th>Date</th><th>Time</th><th>Team 1</th><th>Players</th><th>Team 2</th><th>Players</th><th>Result</th></tr>";
 
 while ($row = mysqli_fetch_assoc($result)) {
   echo "<tr>";
   echo "<td>" . $row['match_id'] . "</td>";
-  echo "<td>" . $row['date'] . "</td>";
-  echo "<td>" . $row['time'] . "</td>";
+  echo "<td>" . date("d F Y", strtotime($row['date'])) . "</td>";
+  echo "<td>" . date("H:i", strtotime($row['time'])) . "</td>";
   echo "<td>" . $row['team1_name'] . "</td>";
   echo "<td><button class='players-button' onclick=\"showTeamPlayers('" . $row['team1_players'] . "')\">View Players</button></td>";
   echo "<td>" . $row['team2_name'] . "</td>";
