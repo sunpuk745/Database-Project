@@ -117,13 +117,22 @@ table {
     background-color: #4CAF50;
     border: none;
     color: white;
-    padding: 8px 16px;
+    padding: 10px 20px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 14px;
-    margin: 4px 2px;
-    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 5px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease;
+  }
+  .players-button:hover {
+    background-color: #3e8e41;
+  }
+  .players-button:focus {
+    outline: none;
+    box-shadow: 0px 0px 5px #4CAF50;
   }
   div {
     display: flex;
@@ -155,18 +164,63 @@ table {
     outline: none;
     box-shadow: none;
   }
+  .filter-form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+  }
+  .filter-form select {
+    font-size: 16px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 2px solid #008CBA;
+    }
+  .filter-form label {
+    font-size: 18px;
+    margin-right: 10px;
+  }
+  .filter-form input[type=text] {
+    font-size: 16px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 2px solid #008CBA;
+  }
+  .filter-form input[type=date] {
+    padding: 10px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  .filter-form button[type=submit] {
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+  } 
+  .filter-form button[type=submit]:hover {
+    background-color: #2980b9;
+  }
+  .filter-form input[type=date]:focus {
+    outline: none;
+    border-color: #2980b9;
+  }
 </style>";
 // display the schedules
 echo "<img src='sportsday.png' width='500' class='center' vspace='30'>";
 echo "<h1 style='text-align: center;'>All Sports Schedule</h1>";
 
-echo "<form method='get' style='text-align: center;'>
+echo "<form method='get' class='filter-form' style='text-align: center;'>
         <label for='player_filter'>กรองโดยชื่อนักกีฬา :</label>
         <input type='text' id='player_filter' name='player_filter' value='$player_filter' placeholder='กรอกชื่อนักกีฬา'>
-        <button type='submit'>กรอง</button>
+        <button type='submit' style='margin-left: 10px;'>กรอง</button>
       </form>";
 
-echo "<form method='get' style='text-align: center;'>
+echo "<form method='get' class='filter-form' style='text-align: center;'>
         <label for='player_filter'>กรองโดยชื่อนักกีฬา:</label>
         <select id='player_filter' name='player_filter'>
             <option value=''>--ทุกนักกีฬา--</option>";
@@ -184,13 +238,13 @@ echo "<form method='get' style='text-align: center;'>
                 echo "<option value=\"$player_name\" $selected>$player_name</option>";
             }
 echo "</select>
-        <button type='submit'>กรอง</button>
+        <button type='submit' style='margin-left: 10px;'>กรอง</button>
         </form>";
 
-echo "<form method='get' style='text-align: center;'>
+echo "<form method='get' class='filter-form' style='text-align: center;'>
         <label for='date_filter'>วันที่:</label>
         <input type='date' id='date_filter' name='date_filter' value='$date_filter'>
-        <button type='submit'>กรอง</button>
+        <button type='submit' style='margin-left: 10px;'>กรอง</button>
       </form>";
 
 // display football schedules
@@ -262,58 +316,88 @@ echo "</table>";
 <body background='background.jpg'>
     <script>
         function showTeamPlayers(players) {
-        var playersArray = players.split(', ');
-        var playerList = '';
-
-        for (var i = 0; i < playersArray.length; i++) {
-            playerList += (i+1) + '. ' + playersArray[i] + '\n';
-        }
-
-        var dialog = document.createElement('div');
-        dialog.style.width = '300px';
-        dialog.style.height = '300px';
-        dialog.style.backgroundColor = '#fff';
-        dialog.style.border = '1px solid #ccc';
-        dialog.style.borderRadius = '5px';
-        dialog.style.padding = '20px';
-        dialog.style.position = 'fixed';
-        dialog.style.top = '50%';
-        dialog.style.left = '50%';
-        dialog.style.transform = 'translate(-50%, -50%)';
-        dialog.style.zIndex = '9999';
+      var playersArray = players.split(', ');
+      
+      var dialog = document.createElement('div');
+      dialog.style.width = '600px';
+      dialog.style.height = 'auto';
+      dialog.style.backgroundColor = '#90EE90';
+      dialog.style.border = '1px solid #ccc';
+      dialog.style.borderRadius = '5px';
+      dialog.style.padding = '20px';
+      dialog.style.position = 'fixed';
+      dialog.style.top = '50%';
+      dialog.style.left = '50%';
+      dialog.style.transform = 'translate(-50%, -50%)';
+      dialog.style.zIndex = '9999';
+      
+      var table = document.createElement('table');
+      table.style.width = '100%';
+      table.style.borderCollapse = 'collapse';
+      
+      var headerRow = document.createElement('tr');
+      var headerCell1 = document.createElement('th');
+      headerCell1.innerHTML = 'No.';
+      var headerCell2 = document.createElement('th');
+      headerCell2.innerHTML = 'Player Name';
+      headerRow.appendChild(headerCell1);
+      headerRow.appendChild(headerCell2);
+      table.appendChild(headerRow);
+      
+      for (var i = 0; i < playersArray.length; i++) {
+        var row = document.createElement('tr');
         
-        var title = document.createElement('h3');
-        title.innerHTML = 'Players';
-        title.style.marginTop = '0';
+        var cell1 = document.createElement('td');
+        cell1.innerHTML = i+1;
+        row.appendChild(cell1);
         
-        var list = document.createElement('textarea');
-        list.innerHTML = playerList;
-        list.style.width = '100%';
-        list.style.height = '200px';
-        list.style.resize = 'none';
+        var cell2 = document.createElement('td');
+        cell2.innerHTML = playersArray[i];
+        row.appendChild(cell2);
         
-        var closeButton = document.createElement('button');
-        closeButton.innerHTML = 'Close';
-        closeButton.style.backgroundColor = '#4CAF50';
-        closeButton.style.border = 'none';
-        closeButton.style.color = '#fff';
-        closeButton.style.padding = '8px 16px';
-        closeButton.style.textAlign = 'center';
-        closeButton.style.textDecoration = 'none';
-        closeButton.style.fontSize = '14px';
-        closeButton.style.marginTop = '20px';
-        closeButton.style.cursor = 'pointer';
-        
-        closeButton.onclick = function() {
-            document.body.removeChild(dialog);
-        }
-        
-        dialog.appendChild(title);
-        dialog.appendChild(list);
-        dialog.appendChild(closeButton);
-        
-        document.body.appendChild(dialog);
-    }
+        table.appendChild(row);
+      }
+      
+      dialog.appendChild(table);
+      
+      var closeButton = document.createElement('button');
+      closeButton.innerHTML = 'Close';
+      closeButton.style.backgroundColor = '#FF5733';
+      closeButton.style.border = 'none';
+      closeButton.style.color = '#fff';
+      closeButton.style.padding = '8px 16px';
+      closeButton.style.textAlign = 'center';
+      closeButton.style.textDecoration = 'none';
+      closeButton.style.fontSize = '14px';
+      closeButton.style.marginTop = '20px';
+      closeButton.style.cursor = 'pointer';
+      closeButton.style.borderRadius = '5px';
+      
+      closeButton.addEventListener('mouseover', function() {
+          closeButton.style.backgroundColor = '#f44336';
+      });
+      
+      closeButton.addEventListener('mouseout', function() {
+          closeButton.style.backgroundColor = '#FF5733';
+      });
+          
+      closeButton.onclick = function() {
+        document.body.removeChild(dialog);
+      }
+      
+      var closeButtonContainer = document.createElement('div');
+      closeButtonContainer.style.width = '100%';
+      closeButtonContainer.style.position = 'fixed';
+      closeButtonContainer.style.bottom = '-40px';
+      closeButtonContainer.style.left = '0';
+      closeButtonContainer.style.right = '0';
+      closeButtonContainer.style.textAlign = 'center';
+      
+      closeButtonContainer.appendChild(closeButton);
+      dialog.appendChild(closeButtonContainer);
+      
+      document.body.appendChild(dialog);
+      }
 
     </script>
 </body>

@@ -93,13 +93,22 @@ table {
     background-color: #4CAF50;
     border: none;
     color: white;
-    padding: 8px 16px;
+    padding: 10px 20px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 14px;
-    margin: 4px 2px;
-    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 5px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease;
+  }
+  .players-button:hover {
+    background-color: #3e8e41;
+  }
+  .players-button:focus {
+    outline: none;
+    box-shadow: 0px 0px 5px #4CAF50;
   }
   div {
     display: flex;
@@ -117,11 +126,9 @@ table {
     border-radius: 4px;
     cursor: pointer;
   }
-  
   .form-button:hover {
     background-color: #3e8e41;
   }
-  
   .form-popup-overlay {
     position: fixed;
     top: 0;
@@ -132,9 +139,8 @@ table {
     z-index: 1;
     display: none;
   }
-  
   .form-popup {
-    position: absolute;
+    position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -144,11 +150,9 @@ table {
     z-index: 2;
     display: none;
   }
-  
   .form-container {
     max-width: 400px;
   }
-  
   .form-container input[type=date],
   .form-container input[type=time],
   .form-container input[type=text] {
@@ -160,7 +164,6 @@ table {
     border-radius: 4px;
     box-sizing: border-box;
   }
-  
   .form-container button[type=submit] {
     background-color: #4CAF50;
     color: white;
@@ -267,22 +270,6 @@ while ($row = mysqli_fetch_assoc($result_football)) {
 echo "</table>";
 ?>
 
-<div class="form-popup-overlay" id="result-popup-overlay"></div>
-<div class="form-popup" id="resultForm">
-  <form method="post" action="update_match_result.php" class="form-container">
-    <h1>Update Match Result</h1>
-    <input type="hidden" name="database_name" value="">
-    <label for="match_id"><b>Match ID</b></label>
-    <input type="text" placeholder="Enter Match ID" name="match_id" readonly required>
-    <label for="team1_score"><b>Team 1 Score</b></label>
-    <input type="text" placeholder="Enter Team 1 Score" name="team1_score" required>
-    <label for="team2_score"><b>Team 2 Score</b></label>
-    <input type="text" placeholder="Enter Team 2 Score" name="team2_score" required>
-    <button type="submit" class="btn">Update Match Result</button>
-    <button type="button" class="btn cancel" onclick="closeResultForm()" style="float: right;">Close</button>
-  </form>
-</div>
-
 <br></br>
 
 <?php
@@ -290,40 +277,6 @@ $database_name = "football_tournament";
 
 echo "<button class='form-button' onclick=\"openForm('" . $database_name . "')\">Add New Football Match Schedule</button>";
 ?>
-
-<div class="form-popup-overlay" id="form-popup-overlay"></div>
-<div class="form-popup" id="myForm">
-  <form method="post" action="add_match_schedule.php" class="form-container">
-    <h1>Add New Match Schedule</h1>
-    <input type="hidden" name="database_name" value="">
-    <label for="match_date"><b>Match Date</b></label>
-    <input type="date" placeholder="Enter Match Date" name="match_date" required>
-
-    <label for="match_time"><b>Match Time</b></label>
-    <input type="time" placeholder="Enter Match Time" name="match_time" required>
-
-    <label for="team1"><b>Team 1</b></label>
-    <select name="team1" required>
-      <option value="" disabled selected>Select a color</option>
-      <option value="1">Red</option>
-      <option value="2">Blue</option>
-      <option value="3">Yellow</option>
-      <option value="3">Green</option>
-    </select>
-
-    <label for="team2"><b>Team 2</b></label>
-    <select name="team2" required>
-      <option value="" disabled selected>Select a color</option>
-      <option value="1">Red</option>
-      <option value="2">Blue</option>
-      <option value="3">Yellow</option>
-      <option value="4">Green</option>
-    </select>
-
-    <button type="submit" class="btn">Add Match Schedule</button>
-    <button type="button" class="btn cancel" onclick="closeForm()" style="float: right;">Close</button>
-  </form>
-</div>
 
 <?php
 // display volleyball schedules
@@ -381,6 +334,57 @@ while ($row = mysqli_fetch_assoc($result_basketball)) {
 echo "</table>";
 ?>
 
+<div class="form-popup-overlay" id="result-popup-overlay"></div>
+<div class="form-popup" id="resultForm">
+  <form method="post" action="update_match_result.php" class="form-container">
+    <h1>Update Match Result</h1>
+    <input type="hidden" name="database_name" value="">
+    <label for="match_id"><b>Match ID</b></label>
+    <input type="text" placeholder="Enter Match ID" name="match_id" readonly required>
+    <label for="team1_score"><b>Team 1 Score</b></label>
+    <input type="text" placeholder="Enter Team 1 Score" name="team1_score" required>
+    <label for="team2_score"><b>Team 2 Score</b></label>
+    <input type="text" placeholder="Enter Team 2 Score" name="team2_score" required>
+    <button type="submit" class="btn">Update Match Result</button>
+    <button type="button" class="btn cancel" onclick="closeResultForm()" style="float: right;">Close</button>
+  </form>
+</div>
+
+
+<div class="form-popup-overlay" id="form-popup-overlay"></div>
+<div class="form-popup" id="myForm">
+  <form method="post" action="add_match_schedule.php" class="form-container">
+    <h1>Add New Match Schedule</h1>
+    <input type="hidden" name="database_name" value="">
+    <label for="match_date"><b>Match Date</b></label>
+    <input type="date" placeholder="Enter Match Date" name="match_date" required>
+
+    <label for="match_time"><b>Match Time</b></label>
+    <input type="time" placeholder="Enter Match Time" name="match_time" required>
+
+    <label for="team1"><b>Team 1</b></label>
+    <select name="team1" required>
+      <option value="" disabled selected>Select a color</option>
+      <option value="1">Red</option>
+      <option value="2">Blue</option>
+      <option value="3">Yellow</option>
+      <option value="3">Green</option>
+    </select>
+
+    <label for="team2"><b>Team 2</b></label>
+    <select name="team2" required>
+      <option value="" disabled selected>Select a color</option>
+      <option value="1">Red</option>
+      <option value="2">Blue</option>
+      <option value="3">Yellow</option>
+      <option value="4">Green</option>
+    </select>
+
+    <button type="submit" class="btn">Add Match Schedule</button>
+    <button type="button" class="btn cancel" onclick="closeForm()" style="float: right;">Close</button>
+  </form>
+</div>
+
 <br></br>
 
 <?php
@@ -397,16 +401,11 @@ echo "<button class='form-button' onclick=\"openForm('" . $database_name . "')\"
   <script>
       function showTeamPlayers(players) {
       var playersArray = players.split(', ');
-      var playerList = '';
-
-      for (var i = 0; i < playersArray.length; i++) {
-          playerList += (i+1) + '. ' + playersArray[i] + '\n';
-      }
-
+      
       var dialog = document.createElement('div');
-      dialog.style.width = '300px';
-      dialog.style.height = '300px';
-      dialog.style.backgroundColor = '#fff';
+      dialog.style.width = '600px';
+      dialog.style.height = 'auto';
+      dialog.style.backgroundColor = '#90EE90';
       dialog.style.border = '1px solid #ccc';
       dialog.style.borderRadius = '5px';
       dialog.style.padding = '20px';
@@ -416,19 +415,38 @@ echo "<button class='form-button' onclick=\"openForm('" . $database_name . "')\"
       dialog.style.transform = 'translate(-50%, -50%)';
       dialog.style.zIndex = '9999';
       
-      var title = document.createElement('h3');
-      title.innerHTML = 'Players';
-      title.style.marginTop = '0';
+      var table = document.createElement('table');
+      table.style.width = '100%';
+      table.style.borderCollapse = 'collapse';
       
-      var list = document.createElement('textarea');
-      list.innerHTML = playerList;
-      list.style.width = '100%';
-      list.style.height = '200px';
-      list.style.resize = 'none';
+      var headerRow = document.createElement('tr');
+      var headerCell1 = document.createElement('th');
+      headerCell1.innerHTML = 'No.';
+      var headerCell2 = document.createElement('th');
+      headerCell2.innerHTML = 'Player Name';
+      headerRow.appendChild(headerCell1);
+      headerRow.appendChild(headerCell2);
+      table.appendChild(headerRow);
+      
+      for (var i = 0; i < playersArray.length; i++) {
+        var row = document.createElement('tr');
+        
+        var cell1 = document.createElement('td');
+        cell1.innerHTML = i+1;
+        row.appendChild(cell1);
+        
+        var cell2 = document.createElement('td');
+        cell2.innerHTML = playersArray[i];
+        row.appendChild(cell2);
+        
+        table.appendChild(row);
+      }
+      
+      dialog.appendChild(table);
       
       var closeButton = document.createElement('button');
       closeButton.innerHTML = 'Close';
-      closeButton.style.backgroundColor = '#4CAF50';
+      closeButton.style.backgroundColor = '#FF5733';
       closeButton.style.border = 'none';
       closeButton.style.color = '#fff';
       closeButton.style.padding = '8px 16px';
@@ -437,19 +455,33 @@ echo "<button class='form-button' onclick=\"openForm('" . $database_name . "')\"
       closeButton.style.fontSize = '14px';
       closeButton.style.marginTop = '20px';
       closeButton.style.cursor = 'pointer';
+      closeButton.style.borderRadius = '5px';
       
+      closeButton.addEventListener('mouseover', function() {
+          closeButton.style.backgroundColor = '#f44336';
+      });
+      
+      closeButton.addEventListener('mouseout', function() {
+          closeButton.style.backgroundColor = '#FF5733';
+      });
+          
       closeButton.onclick = function() {
-          document.body.removeChild(dialog);
+        document.body.removeChild(dialog);
       }
       
-      dialog.appendChild(title);
-      dialog.appendChild(list);
-      dialog.appendChild(closeButton);
+      var closeButtonContainer = document.createElement('div');
+      closeButtonContainer.style.width = '100%';
+      closeButtonContainer.style.position = 'fixed';
+      closeButtonContainer.style.bottom = '-40px';
+      closeButtonContainer.style.left = '0';
+      closeButtonContainer.style.right = '0';
+      closeButtonContainer.style.textAlign = 'center';
+      
+      closeButtonContainer.appendChild(closeButton);
+      dialog.appendChild(closeButtonContainer);
       
       document.body.appendChild(dialog);
-  }
-
-
+      }
 
   function openForm(databaseName) {
 

@@ -64,13 +64,22 @@ table {
     background-color: #4CAF50;
     border: none;
     color: white;
-    padding: 8px 16px;
+    padding: 10px 20px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 14px;
-    margin: 4px 2px;
-    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 5px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease;
+  }
+  .players-button:hover {
+    background-color: #3e8e41;
+  }
+  .players-button:focus {
+    outline: none;
+    box-shadow: 0px 0px 5px #4CAF50;
   }
   .center {
     display: block;
@@ -128,16 +137,11 @@ echo "</table>";
   <script>
       function showTeamPlayers(players) {
       var playersArray = players.split(', ');
-      var playerList = '';
-
-      for (var i = 0; i < playersArray.length; i++) {
-          playerList += (i+1) + '. ' + playersArray[i] + '\n';
-      }
-
+      
       var dialog = document.createElement('div');
-      dialog.style.width = '300px';
-      dialog.style.height = '300px';
-      dialog.style.backgroundColor = '#fff';
+      dialog.style.width = '600px';
+      dialog.style.height = 'auto';
+      dialog.style.backgroundColor = '#90EE90';
       dialog.style.border = '1px solid #ccc';
       dialog.style.borderRadius = '5px';
       dialog.style.padding = '20px';
@@ -147,19 +151,38 @@ echo "</table>";
       dialog.style.transform = 'translate(-50%, -50%)';
       dialog.style.zIndex = '9999';
       
-      var title = document.createElement('h3');
-      title.innerHTML = 'Players';
-      title.style.marginTop = '0';
+      var table = document.createElement('table');
+      table.style.width = '100%';
+      table.style.borderCollapse = 'collapse';
       
-      var list = document.createElement('textarea');
-      list.innerHTML = playerList;
-      list.style.width = '100%';
-      list.style.height = '200px';
-      list.style.resize = 'none';
+      var headerRow = document.createElement('tr');
+      var headerCell1 = document.createElement('th');
+      headerCell1.innerHTML = 'No.';
+      var headerCell2 = document.createElement('th');
+      headerCell2.innerHTML = 'Player Name';
+      headerRow.appendChild(headerCell1);
+      headerRow.appendChild(headerCell2);
+      table.appendChild(headerRow);
+      
+      for (var i = 0; i < playersArray.length; i++) {
+        var row = document.createElement('tr');
+        
+        var cell1 = document.createElement('td');
+        cell1.innerHTML = i+1;
+        row.appendChild(cell1);
+        
+        var cell2 = document.createElement('td');
+        cell2.innerHTML = playersArray[i];
+        row.appendChild(cell2);
+        
+        table.appendChild(row);
+      }
+      
+      dialog.appendChild(table);
       
       var closeButton = document.createElement('button');
       closeButton.innerHTML = 'Close';
-      closeButton.style.backgroundColor = '#4CAF50';
+      closeButton.style.backgroundColor = '#FF5733';
       closeButton.style.border = 'none';
       closeButton.style.color = '#fff';
       closeButton.style.padding = '8px 16px';
@@ -168,17 +191,33 @@ echo "</table>";
       closeButton.style.fontSize = '14px';
       closeButton.style.marginTop = '20px';
       closeButton.style.cursor = 'pointer';
+      closeButton.style.borderRadius = '5px';
       
+      closeButton.addEventListener('mouseover', function() {
+          closeButton.style.backgroundColor = '#f44336';
+      });
+      
+      closeButton.addEventListener('mouseout', function() {
+          closeButton.style.backgroundColor = '#FF5733';
+      });
+          
       closeButton.onclick = function() {
-          document.body.removeChild(dialog);
+        document.body.removeChild(dialog);
       }
       
-      dialog.appendChild(title);
-      dialog.appendChild(list);
-      dialog.appendChild(closeButton);
+      var closeButtonContainer = document.createElement('div');
+      closeButtonContainer.style.width = '100%';
+      closeButtonContainer.style.position = 'fixed';
+      closeButtonContainer.style.bottom = '-40px';
+      closeButtonContainer.style.left = '0';
+      closeButtonContainer.style.right = '0';
+      closeButtonContainer.style.textAlign = 'center';
+      
+      closeButtonContainer.appendChild(closeButton);
+      dialog.appendChild(closeButtonContainer);
       
       document.body.appendChild(dialog);
-  }
+      }
 
   </script>
 </body>
