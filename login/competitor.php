@@ -14,6 +14,8 @@ if (!$conn_football) {
 }
 
 $player_filter = isset($_GET['player_filter']) ? $_GET['player_filter'] : '';
+
+      
 // fetch football schedules
 $sql_football = "SELECT matches.match_id, matches.date, matches.time, team1.team_name AS team1_name, team2.team_name AS team2_name, matches.result,
                     GROUP_CONCAT(DISTINCT player1.player_name SEPARATOR ', ') AS team1_players,
@@ -63,6 +65,7 @@ $sql_basketball = "SELECT matches.match_id, matches.date, matches.time, team1.te
 
 $result_basketball = mysqli_query($conn_basketball, $sql_basketball);
 
+
 // Display the match schedule in a table format
 echo "<style>
 table {
@@ -91,9 +94,20 @@ table {
     margin: 4px 2px;
     cursor: pointer;
   }
+  div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 </style>";
 // display the schedules
 echo "<h1 style='text-align: center;'>All Sports Schedule</h1>";
+
+echo "<form method='get' style='text-align: center;'>
+        <label for='player_filter'>กรองโดยชื่อนักกีฬา :</label>
+        <input type='text' id='player_filter' name='player_filter' value='$player_filter'>
+        <button type='submit'>กรอง</button>
+      </form>";
 
 // display football schedules
 echo "<h2 style='text-align: center;'>Football Schedule</h2>";
@@ -103,8 +117,8 @@ echo "<tr><th>Match ID</th><th>Date</th><th>Time</th><th>Team 1</th><th>Players<
 while ($row = mysqli_fetch_assoc($result_football)) {
     echo "<tr>";
     echo "<td>" . $row['match_id'] . "</td>";
-    echo "<td>" . $row['date'] . "</td>";
-    echo "<td>" . $row['time'] . "</td>";
+    echo "<td>" . date("d F Y", strtotime($row['date'])) . "</td>";
+    echo "<td>" . date("H:i", strtotime($row['time'])) . "</td>";
     echo "<td>" . $row['team1_name'] . "</td>";
     echo "<td><button class='players-button' onclick=\"showTeamPlayers('" . $row['team1_players'] . "')\">View Players</button></td>";
     echo "<td>" . $row['team2_name'] . "</td>";
@@ -123,8 +137,8 @@ echo "<tr><th>Match ID</th><th>Date</th><th>Time</th><th>Team 1</th><th>Players<
 while ($row = mysqli_fetch_assoc($result_volleyball)) {
     echo "<tr>";
     echo "<td>" . $row['match_id'] . "</td>";
-    echo "<td>" . $row['date'] . "</td>";
-    echo "<td>" . $row['time'] . "</td>";
+    echo "<td>" . date("d F Y", strtotime($row['date'])) . "</td>";
+    echo "<td>" . date("H:i", strtotime($row['time'])) . "</td>";
     echo "<td>" . $row['team1_name'] . "</td>";
     echo "<td><button class='players-button' onclick=\"showTeamPlayers('" . $row['team1_players'] . "')\">View Players</button></td>";
     echo "<td>" . $row['team2_name'] . "</td>";
@@ -143,8 +157,8 @@ echo "<tr><th>Match ID</th><th>Date</th><th>Time</th><th>Team 1</th><th>Players<
 while ($row = mysqli_fetch_assoc($result_basketball)) {
     echo "<tr>";
     echo "<td>" . $row['match_id'] . "</td>";
-    echo "<td>" . $row['date'] . "</td>";
-    echo "<td>" . $row['time'] . "</td>";
+    echo "<td>" . date("d F Y", strtotime($row['date'])) . "</td>";
+    echo "<td>" . date("H:i", strtotime($row['time'])) . "</td>";
     echo "<td>" . $row['team1_name'] . "</td>";
     echo "<td><button class='players-button' onclick=\"showTeamPlayers('" . $row['team1_players'] . "')\">View Players</button></td>";
     echo "<td>" . $row['team2_name'] . "</td>";
@@ -157,35 +171,30 @@ echo "</table>";
 
 ?>
 
-<form method="GET">
-    <label for="player_filter">กรองโดยชื่อนักกีฬา:</label>
-    <select id="player_filter" name="player_filter">
-        <option value="">--ทุกนักกีฬา--</option>
-        <?php
-        $sql_players = "SELECT DISTINCT player_name FROM (
-                            SELECT player_name FROM football_tournament.players
-                            UNION
-                            SELECT player_name FROM volleyball_tournament.players
-                            UNION
-                            SELECT player_name FROM basketball_tournament.players
-                        ) AS all_players ORDER BY player_name;";
-        $result_players = mysqli_query($conn_football, $sql_players);
-        while ($row_players = mysqli_fetch_assoc($result_players)) {
-            $player_name = $row_players['player_name'];
-            $selected = ($player_filter == $player_name) ? 'selected' : '';
-            echo "<option value=\"$player_name\" $selected>$player_name</option>";
-        }
-        ?>
-    </select>
-    <button type="submit">กรอง</button>
-</form>
-
-<form method="get" action="">
-  <label for="player_filter">กรองโดยชื่อนักกีฬา:</label>
-  <input type="text" name="player_filter" id="player_filter">
-  <input type="submit" value="กรอง">
-</form>
-
+<div>
+    <form method="GET">
+        <label for="player_filter">กรองโดยชื่อนักกีฬา:</label>
+        <select id="player_filter" name="player_filter">
+            <option value="">--ทุกนักกีฬา--</option>
+            <?php
+            $sql_players = "SELECT DISTINCT player_name FROM (
+                                SELECT player_name FROM football_tournament.players
+                                UNION
+                                SELECT player_name FROM volleyball_tournament.players
+                                UNION
+                                SELECT player_name FROM basketball_tournament.players
+                            ) AS all_players ORDER BY player_name;";
+            $result_players = mysqli_query($conn_football, $sql_players);
+            while ($row_players = mysqli_fetch_assoc($result_players)) {
+                $player_name = $row_players['player_name'];
+                $selected = ($player_filter == $player_name) ? 'selected' : '';
+                echo "<option value=\"$player_name\" $selected>$player_name</option>";
+            }
+            ?>
+        </select>
+        <button type="submit">กรอง</button>
+    </form>
+</div>
 
 <script>
     function showTeamPlayers(players) {
