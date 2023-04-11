@@ -49,7 +49,6 @@ session_start();
 					}
 				}
 			}
-			
 			echo "<h1 style='text-align: center; color: #FFD524; font-size:20px; font-family:verdana;'>wrong username or password!</h1>";
 		}else
 		{
@@ -119,14 +118,13 @@ session_start();
 
 	</style>
 
+	
 	<div id="box">
 		<img src='sportsday.png' width='200' id='center' vspace='30'>
 		<form method="post">
 			<div id="title">Login</div>
-
-			<input id="text" type="text" name="user_name" placeholder="  Username" onfocus="this.placeholder=''" onblur="this.placeholder='Username'"><br><br>
-			<input id="text" type="password" name="password" placeholder="  Password" onfocus="this.placeholder=''" onblur="this.placeholder='Password'"><br><br><br>
-
+			<input id="text" type="text" name="user_name" placeholder="Username" onfocus="this.placeholder=''" onblur="this.placeholder='Enter your username'"><br><br>
+			<input id="text" type="password" name="password" placeholder="Password" onfocus="this.placeholder=''" onblur="this.placeholder='Enter your password'"><br><br><br>
 			<input id="button" type="submit" value="Login"><br><br>
 		</form>
 	</div>
