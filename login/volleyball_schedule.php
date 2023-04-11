@@ -43,6 +43,14 @@ if (!$result) {
   die("Error: " . $sql . "<br>" . mysqli_error($conn));
 }
 
+echo "<style>
+img {
+  border-radius: 50px;
+  border: 5px solid white;
+  box-shadow: 15px 15px 1px #4B0082;
+}
+</style>";
+
 function getTeamColor($team_name) {
   switch ($team_name) {
     case "Red":
