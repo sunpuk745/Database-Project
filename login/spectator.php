@@ -80,7 +80,8 @@ if (!isset($_SESSION['user_id'])) {
 	<div id="box">
 		
 		<form method="post">
-			<div style="font-size: 28px;margin-bottom: 30px;color: black; font-weight: bold; font-family:verdana; text-shadow: 2px 2px #ECB602;">Select Sport</div>
+			<div style="font-size: 38px;margin-bottom: 10px;color: black; font-weight: bold; font-family:verdana; text-shadow: 2px 2px lightgrey;">Spectator</div>
+			<div style="font-size: 20px;margin-bottom: 20px;color: black;; font-family:verdana;">Select Sport</div>
 
 			<input id="button" type="submit" name="all" value="All"><br>
 			<input id="button" type="submit" name="football" value="Football"><br>

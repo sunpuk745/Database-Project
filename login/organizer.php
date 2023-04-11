@@ -256,7 +256,7 @@ table {
 </style>";
 // display the schedules
 echo "<img src='sportsday.png' width='500' class='center' vspace='30'>";
-echo "<h1 style='text-align: center; color:white; font-size:50px; font-family:verdana; text-shadow: 4px 4px black;'>All Sports Schedule</h1>";
+echo "<h1 style='text-align: center; color:white; font-size:50px; font-family:verdana; text-shadow: 4px 4px black;'>Organizer Schedule</h1>";
 
 // display football schedules
 echo "<h2 style='text-align: center; color:white; font-size:25px; font-family:verdana; text-shadow: 4px 4px black;'>Football Schedule</h2>";
