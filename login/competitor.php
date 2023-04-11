@@ -212,19 +212,34 @@ table {
     outline: none;
     border-color: #2980b9;
   }
+  .box{
+    margin-left: auto;
+		margin-right: auto;
+    width: 1300px;
+    top: 10%;
+    left: 50%;
+    text-align: center;
+    padding: 30px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 15px 15px 1px #4B0082;
+    background-color: #f9f9f9;
+
+  }
 </style>";
 // display the schedules
 echo "<img src='sportsday.png' width='500' class='center' vspace='30'>";
 echo "<h1 style='text-align: center; color:white; font-size:50px; font-family:verdana; text-shadow: 4px 4px black;'>Competitor Schedule</h1>";
 
-echo "<form method='get' class='filter-form' style='text-align: center;'>
-        <label for='player_filter' style='color: white';>กรองโดยชื่อนักกีฬา :</label>
+echo "<div class='box'>
+      <form method='get' class='filter-form' style='text-align: center;'>
+        <label for='player_filter' style='color: black';>กรองโดยชื่อนักกีฬา :</label>
         <input type='text' id='player_filter' name='player_filter' value='$player_filter' placeholder='กรอกชื่อนักกีฬา'>
-        <button type='submit' style='margin-left: 10px; background-color: #FFD524; color: black;'>กรอง</button>
+        <button type='submit' style='margin-left: 10px; margin-right: 20px; background-color: #FFD524; color: black;'>กรอง</button>
       </form>";
 
 echo "<form method='get' class='filter-form' style='text-align: center;'>
-        <label for='player_filter' style='color: white';>กรองโดยชื่อนักกีฬา:</label>
+        <label for='player_filter' style='color: black';>กรองโดยชื่อนักกีฬา:</label>
         <select id='player_filter' name='player_filter'>
             <option value=''>--ทุกนักกีฬา--</option>";
             $sql_players = "SELECT DISTINCT player_name FROM (
@@ -241,14 +256,15 @@ echo "<form method='get' class='filter-form' style='text-align: center;'>
                 echo "<option value=\"$player_name\" $selected>$player_name</option>";
             }
 echo "</select>
-<button type='submit' style='margin-left: 10px; background-color: #FFD524; color: black;'>กรอง</button>
+<button type='submit' style='margin-left: 10px; margin-right: 20px; background-color: #FFD524; color: black;'>กรอง</button>
         </form>";
 
 echo "<form method='get' class='filter-form' style='text-align: center;'>
-        <label for='date_filter' style='color: white';>วันที่:</label>
+        <label for='date_filter' style='color: black';>วันที่:</label>
         <input type='date' id='date_filter' name='date_filter' value='$date_filter'>
-        <button type='submit' style='margin-left: 10px; background-color: #FFD524; color: black;'>กรอง</button>
-      </form>";
+        <button type='submit' style='margin-left: 10px; margin-right: 20px; background-color: #FFD524; color: black;'>กรอง</button>
+      </form>
+      </div>";
 
 // display football schedules
 echo "<h2 style='text-align: center; color:white; font-size:25px; font-family:verdana; text-shadow: 4px 4px black;'>Football Schedule</h2>";

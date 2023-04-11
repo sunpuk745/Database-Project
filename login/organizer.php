@@ -80,7 +80,7 @@ table {
     box-shadow: 15px 15px 1px #4B0082;
     width: 80%;
     background-color: white;
-    margin-bottom: 80px;
+    margin-bottom: 10px;
   }
   th, td {
     padding: 18px;
@@ -129,6 +129,8 @@ table {
     border-radius: 4px;
     cursor: pointer;
     font-weight: bold;
+    margin-bottom: 50px;
+    box-shadow: 8px 8px 1px #4B0082;
   }
   .form-button:hover {
     background-color: #ECB602;
