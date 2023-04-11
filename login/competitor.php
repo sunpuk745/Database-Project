@@ -118,7 +118,7 @@ echo "<div class='box'>
       <form method='get' class='filter-form' style='text-align: center;'>
         <label for='player_filter' style='color: black';>กรองโดยชื่อนักกีฬา :</label>
         <input type='text' id='player_filter' name='player_filter' value='$player_filter' placeholder='กรอกชื่อนักกีฬา'>
-        <button type='submit' style='margin-left: 10px; margin-right: 20px; background-color: #FFD524; color: black;'>กรอง</button>
+        <button type='submit'>กรอง</button>
       </form>";
 
 echo "<form method='get' class='filter-form' style='text-align: center;'>
@@ -139,13 +139,13 @@ echo "<form method='get' class='filter-form' style='text-align: center;'>
                 echo "<option value=\"$player_name\" $selected>$player_name</option>";
             }
 echo "</select>
-<button type='submit' style='margin-left: 10px; margin-right: 20px; background-color: #FFD524; color: black;'>กรอง</button>
+<button type='submit'>กรอง</button>
         </form>";
 
 echo "<form method='get' class='filter-form' style='text-align: center;'>
         <label for='date_filter' style='color: black';>วันที่:</label>
         <input type='date' id='date_filter' name='date_filter' value='$date_filter'>
-        <button type='submit' style='margin-left: 10px; margin-right: 20px; background-color: #FFD524; color: black;'>กรอง</button>
+        <button type='submit'>กรอง</button>
       </form>
       </div>";
 

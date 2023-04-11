@@ -10,7 +10,7 @@ table {
     box-shadow: 15px 15px 1px #4B0082;
     width: 80%;
     background-color: white;
-    margin-bottom: 10px;
+    margin-bottom: 80px;
   }
   th, td {
     padding: 18px;
@@ -42,12 +42,6 @@ table {
   .players-button:focus {
     outline: none;
     box-shadow: 0px 0px 5px #4CAF50;
-  }
-  div {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding-top: 30px;
   }
   .form-button {
     display: block;
@@ -185,9 +179,21 @@ table {
     align-items: center;
     margin: 20px 0;
   }
+  .filter-form select {
+    font-size: 16px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 2px solid #008CBA;
+    }
   .filter-form label {
     font-size: 18px;
     margin-right: 10px;
+  }
+  .filter-form input[type=text] {
+    font-size: 16px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 2px solid #008CBA;
   }
   .filter-form input[type=date] {
     padding: 10px;
@@ -196,20 +202,44 @@ table {
     font-size: 16px;
   }
   .filter-form button[type=submit] {
-    background-color: #3498db;
-    color: #fff;
+    background-color: #FFD524;
+    color: black;
     border: none;
     padding: 10px 20px;
     border-radius: 5px;
+    margin-left: 10px; 
+    margin-right: 20px;
     font-size: 16px;
     cursor: pointer;
   } 
   .filter-form button[type=submit]:hover {
-    background-color: #2980b9;
+    background-color: #ECB602;
   }
   .filter-form input[type=date]:focus {
     outline: none;
     border-color: #2980b9;
+  }
+  div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 30px;
+  }
+  .box{
+    margin-left: auto;
+		margin-right: auto;
+    width: 1300px;
+    height: 80px;
+    top: 10%;
+    left: 50%;
+    text-align: center;
+    padding: 30px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 15px 15px 1px #4B0082;
+    background-color: #f9f9f9;
+    margin-bottom: 80px;
+
   }
   .center {
     display: block;
