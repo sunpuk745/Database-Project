@@ -49,10 +49,10 @@ session_start();
 					}
 				}
 			}
-			echo "<h1 style='text-align: center; color: #FFD524; font-size:20px; font-family:verdana;'>wrong username or password!</h1>";
+			echo "<script>alert('Incorrect username or password!');</script>";
 		}else
 		{
-			echo "<h1 style='text-align: center; color: #FFD524; font-size:20px; font-family:verdana;'>wrong username or password!</h1>";
+			echo "<script>alert('Please enter valid information!');</script>";;
 		}
 	}
 
