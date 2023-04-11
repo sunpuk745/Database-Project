@@ -98,18 +98,19 @@ table {
     background-color: white;
   }
   th, td {
-    padding: 8px;
+    padding: 18px;
     text-align: center;
     border-bottom: 1px solid #ddd;
+    font-family:verdana;
   }
   th {
-    background-color: #4CAF50;
+    background-color: black;
     color: white;
   }
   .players-button {
-    background-color: #4CAF50;
+    background-color: #FFD524;
     border: none;
-    color: white;
+    color: black;
     padding: 10px 20px;
     text-align: center;
     text-decoration: none;
@@ -121,7 +122,7 @@ table {
     transition: background-color 0.3s ease;
   }
   .players-button:hover {
-    background-color: #3e8e41;
+    background-color: #ECB602;
   }
   .players-button:focus {
     outline: none;
@@ -187,15 +188,15 @@ table {
 </style>";
 // display the schedules
 echo "<img src='sportsday.png' width='500' class='center' vspace='30'>";
-echo "<h1 style='text-align: center;'>All Sports Schedule</h1>";
+echo "<h1 style='text-align: center; color:white; font-size:50px; font-family:verdana; text-shadow: 4px 4px black;'>All Sports Schedule</h1>";
 echo "<form method='get' class='filter-form' style='text-align: center;'>
-        <label for='date_filter'>วันที่:</label>
+        <label for='date_filter' style='color: white';>วันที่:</label>
         <input type='date' id='date_filter' name='date_filter' value='$date_filter'>
-        <button type='submit' style='margin-left: 10px;'>กรอง</button>
+        <button type='submit' style='margin-left: 10px; background-color: #FFD524; color: black;'>กรอง</button>
       </form>";
 
 // display football schedules
-echo "<h2 style='text-align: center;'>Football Schedule</h2>";
+echo "<h2 style='text-align: center; color:white; font-size:25px; font-family:verdana; text-shadow: 4px 4px black;'>Football Schedule</h2>";
 echo "<table>";
 echo "<tr><th>Match ID</th><th>Date</th><th>Time</th><th>Team 1</th><th>Players</th><th>Team 2</th><th>Players</th><th>Result</th></tr>";
 
@@ -205,9 +206,9 @@ while ($row = mysqli_fetch_assoc($result_football)) {
     echo "<td>" . date("d F Y", strtotime($row['date'])) . "</td>";
     echo "<td>" . date("H:i", strtotime($row['time'])) . "</td>";
     echo "<td>" . $row['team1_name'] . "</td>";
-    echo "<td><button class='players-button' onclick=\"showTeamPlayers('" . $row['team1_players'] . "')\">View Players</button></td>";
+    echo "<td><button class='players-button' onclick=\"showTeamPlayers('" . $row['team1_players'] . "')\">View</button></td>";
     echo "<td>" . $row['team2_name'] . "</td>";
-    echo "<td><button class='players-button' onclick=\"showTeamPlayers('" . $row['team2_players'] . "')\">View Players</button></td>";
+    echo "<td><button class='players-button' onclick=\"showTeamPlayers('" . $row['team2_players'] . "')\">View</button></td>";
     echo "<td>" . $row['result'] . "</td>";
     echo "</tr>";
 }
@@ -215,7 +216,7 @@ while ($row = mysqli_fetch_assoc($result_football)) {
 echo "</table>";
 
 // display volleyball schedules
-echo "<h2 style='text-align: center;'>Volleyball Schedule</h2>";
+echo "<h2 style='text-align: center; color:white; font-size:25px; font-family:verdana; text-shadow: 4px 4px black;'>Volleyball Schedule</h2>";
 echo "<table>";
 echo "<tr><th>Match ID</th><th>Date</th><th>Time</th><th>Team 1</th><th>Players</th><th>Team 2</th><th>Players</th><th>Result</th></tr>";
 
@@ -225,9 +226,9 @@ while ($row = mysqli_fetch_assoc($result_volleyball)) {
     echo "<td>" . date("d F Y", strtotime($row['date'])) . "</td>";
     echo "<td>" . date("H:i", strtotime($row['time'])) . "</td>";
     echo "<td>" . $row['team1_name'] . "</td>";
-    echo "<td><button class='players-button' onclick=\"showTeamPlayers('" . $row['team1_players'] . "')\">View Players</button></td>";
+    echo "<td><button class='players-button' onclick=\"showTeamPlayers('" . $row['team1_players'] . "')\">View</button></td>";
     echo "<td>" . $row['team2_name'] . "</td>";
-    echo "<td><button class='players-button' onclick=\"showTeamPlayers('" . $row['team2_players'] . "')\">View Players</button></td>";
+    echo "<td><button class='players-button' onclick=\"showTeamPlayers('" . $row['team2_players'] . "')\">View</button></td>";
     echo "<td>" . $row['result'] . "</td>";
     echo "</tr>";
 }
@@ -235,7 +236,7 @@ while ($row = mysqli_fetch_assoc($result_volleyball)) {
 echo "</table>";
 
 // display basketball schedules
-echo "<h2 style='text-align: center;'>Basketball Schedule</h2>";
+echo "<h2 style='text-align: center; color:white; font-size:25px; font-family:verdana; text-shadow: 4px 4px black;'>Basketball Schedule</h2>";
 echo "<table>";
 echo "<tr><th>Match ID</th><th>Date</th><th>Time</th><th>Team 1</th><th>Players</th><th>Team 2</th><th>Players</th><th>Result</th></tr>";
 
@@ -245,9 +246,9 @@ while ($row = mysqli_fetch_assoc($result_basketball)) {
     echo "<td>" . date("d F Y", strtotime($row['date'])) . "</td>";
     echo "<td>" . date("H:i", strtotime($row['time'])) . "</td>";
     echo "<td>" . $row['team1_name'] . "</td>";
-    echo "<td><button class='players-button' onclick=\"showTeamPlayers('" . $row['team1_players'] . "')\">View Players</button></td>";
+    echo "<td><button class='players-button' onclick=\"showTeamPlayers('" . $row['team1_players'] . "')\">View</button></td>";
     echo "<td>" . $row['team2_name'] . "</td>";
-    echo "<td><button class='players-button' onclick=\"showTeamPlayers('" . $row['team2_players'] . "')\">View Players</button></td>";
+    echo "<td><button class='players-button' onclick=\"showTeamPlayers('" . $row['team2_players'] . "')\">View</button></td>";
     echo "<td>" . $row['result'] . "</td>";
     echo "</tr>";
 }
@@ -259,7 +260,7 @@ echo "</table>";
 <form action="logout.php" method="post">
     <button class="logout-button" type="submit" name="logout">Logout</button>
   </form>
-<body background='background.jpg'>
+<body style="background-color:RebeccaPurple">
     <script>
         function showTeamPlayers(players) {
       var playersArray = players.split(', ');
@@ -267,7 +268,7 @@ echo "</table>";
       var dialog = document.createElement('div');
       dialog.style.width = '600px';
       dialog.style.height = 'auto';
-      dialog.style.backgroundColor = '#90EE90';
+      dialog.style.backgroundColor = '#FFD524';
       dialog.style.border = '1px solid #ccc';
       dialog.style.borderRadius = '5px';
       dialog.style.padding = '20px';

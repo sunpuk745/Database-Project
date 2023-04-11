@@ -33,17 +33,37 @@ if (!isset($_SESSION['user_id'])) {
 		}
 		#button {
 			font-size: 18px;
+			font-family:verdana;
 			width: 200px;
 			padding: 15px 32px;
 			border-radius: 5px;
-			background-color: #4CAF50;
-			color: #fff;
+			background-color: #FFD524;
+			color: black;
 			border: none;
 			cursor: pointer;
 			margin-bottom: 10px;
 		}
 		#button:hover {
-			background-color: #3e8e41;
+			background-color: #ECB602;
+		}
+		#logout-button {
+			background-color: red; 
+			color: white;
+			border: none;
+			padding: 10px 20px;
+			font-size: 16px;
+			border-radius: 5px;
+			position: fixed;
+			bottom: 20px;
+			right: 20px;
+		}
+		#logout-button:hover {
+			background-color: darkred;
+		}
+		
+		#logout-button:focus {
+			outline: none;
+			box-shadow: none;
 		}
 		#center {
 			display: block;
@@ -52,11 +72,15 @@ if (!isset($_SESSION['user_id'])) {
 		}
 	</style>
 </head>
-<body background='background.jpg'>
+	<form action="logout.php" method="post">
+		<button id="logout-button" type="submit" name="logout">Logout</button>
+	</form>
+
+<body style="background-color:RebeccaPurple">
 	<div id="box">
 		
 		<form method="post">
-			<div style="font-size: 28px;margin: 10px;color: black; font-weight: bold;">Select Sport</div>
+			<div style="font-size: 28px;margin-bottom: 30px;color: black; font-weight: bold; font-family:verdana; text-shadow: 2px 2px #ECB602;">Select Sport</div>
 
 			<input id="button" type="submit" name="all" value="All"><br>
 			<input id="button" type="submit" name="football" value="Football"><br>

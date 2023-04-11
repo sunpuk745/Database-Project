@@ -65,9 +65,20 @@ session_start();
 <head>
 	<title>Login</title>
 </head>
-<body background='background.jpg'>
+<body style="background-color:RebeccaPurple">
 
 	<style type="text/css">
+	#title {
+		margin-top: 15px;
+		margin-bottom: 30px;
+		text-align: center;
+		font-size: 30px;
+		font-family:Sans-Serif;
+		letter-spacing: 2px;
+		font-weight: bold;
+		color: black;
+
+	}
 	
 	#text{
 
@@ -79,32 +90,38 @@ session_start();
 	}
 
 	#button{
-
 		padding: 10px;
 		width: 80px;
 		color: black;
-		background-color: white;
-		border: solid thin #aaa;
+		background-color: #FFD524;
+		border: solid 2px #ECB602;
+		border-radius: 10px;
 	}
 
 	#box{
-
 		background-color: white;
 		margin: auto;
+		height: 500px;
 		width: 300px;
 		padding: 20px;
 		margin-top: 80px;
+		border-radius: 20px;
+	}
+	#center {
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
 	}
 
 	</style>
 
 	<div id="box">
-		
+		<img src='sportsday.png' width='200' id='center' vspace='30'>
 		<form method="post">
-			<div style="font-size: 20px;margin: 10px;color: black;">Login</div>
+			<div id="title">Login</div>
 
-			<input id="text" type="text" name="user_name" placeholder="Enter your username" onfocus="this.placeholder=''" onblur="this.placeholder='Enter your username'"><br><br>
-			<input id="text" type="password" name="password" placeholder="Enter your password" onfocus="this.placeholder=''" onblur="this.placeholder='Enter your password'"><br><br>
+			<input id="text" type="text" name="user_name" placeholder="Username" onfocus="this.placeholder=''" onblur="this.placeholder='Enter your username'"><br><br>
+			<input id="text" type="password" name="password" placeholder="Password" onfocus="this.placeholder=''" onblur="this.placeholder='Enter your password'"><br><br><br>
 
 			<input id="button" type="submit" value="Login"><br><br>
 		</form>
