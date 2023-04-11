@@ -10,7 +10,7 @@ table {
     box-shadow: 15px 15px 1px #4B0082;
     width: 80%;
     background-color: white;
-    margin-bottom: 80px;
+    margin-bottom: 60px;
   }
   th, td {
     padding: 18px;
@@ -253,4 +253,4 @@ table {
     background-color: red;
     border-radius: 5px;
   }
-</style>"
+</style>
