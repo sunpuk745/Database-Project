@@ -21,25 +21,27 @@ if (!isset($_SESSION['user_id'])) {
 	<style>
 		#box {
 			position: absolute;
+			width: 350px;
 			top: 10%;
 			left: 50%;
 			transform: translateX(-50%);
 			text-align: center;
-			padding: 50px;
+			padding: 30px;
 			border: 1px solid #ccc;
 			border-radius: 5px;
-			box-shadow: 0 0 5px #ccc;
+			box-shadow: 15px 15px 1px #4B0082;
 			background-color: #f9f9f9;
+
 		}
 		#button {
 			font-size: 18px;
 			font-family:verdana;
-			width: 200px;
+			width: 300px;
 			padding: 15px 32px;
 			border-radius: 5px;
 			background-color: #FFD524;
 			color: black;
-			border: none;
+			border: solid 2px black;
 			cursor: pointer;
 			margin-bottom: 10px;
 		}
@@ -80,10 +82,11 @@ if (!isset($_SESSION['user_id'])) {
 	<div id="box">
 		
 		<form method="post">
+			<img src='sportsday.png' width='200' id='center' vspace='0'>
 			<div style="font-size: 38px;margin-bottom: 10px;color: black; font-weight: bold; font-family:verdana; text-shadow: 2px 2px lightgrey;">Spectator</div>
 			<div style="font-size: 20px;margin-bottom: 20px;color: black;; font-family:verdana;">Select Sport</div>
 
-			<input id="button" type="submit" name="all" value="All"><br>
+			<input id="button" type="submit" name="all" value="All Sports"><br>
 			<input id="button" type="submit" name="football" value="Football"><br>
 			<input id="button" type="submit" name="volleyball" value="Volleyball"><br>
 			<input id="button" type="submit" name="basketball" value="Basketball"><br>

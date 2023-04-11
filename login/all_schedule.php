@@ -94,8 +94,10 @@ echo "<style>
 table {
     margin: auto;
     border-collapse: collapse;
+    box-shadow: 15px 15px 1px #4B0082;
     width: 80%;
     background-color: white;
+    margin-bottom: 80px;
   }
   th, td {
     padding: 18px;

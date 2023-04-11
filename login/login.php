@@ -50,10 +50,10 @@ session_start();
 				}
 			}
 			
-			echo "wrong username or password!";
+			echo "<h1 style='text-align: center; color: #FFD524; font-size:20px; font-family:verdana;'>wrong username or password!</h1>";
 		}else
 		{
-			echo "wrong username or password!";
+			echo "<h1 style='text-align: center; color: #FFD524; font-size:20px; font-family:verdana;'>wrong username or password!</h1>";
 		}
 	}
 
@@ -81,21 +81,24 @@ session_start();
 	}
 	
 	#text{
-
 		height: 25px;
 		border-radius: 5px;
 		padding: 4px;
 		border: solid thin #aaa;
-		width: 100%;
+		width: 95%;
 	}
 
 	#button{
+		margin: auto;
 		padding: 10px;
 		width: 80px;
 		color: black;
 		background-color: #FFD524;
-		border: solid 2px #ECB602;
+		border: solid 1px black;
 		border-radius: 10px;
+	}
+	#button:hover {
+		background-color: #ECB602;
 	}
 
 	#box{
@@ -106,6 +109,7 @@ session_start();
 		padding: 20px;
 		margin-top: 80px;
 		border-radius: 20px;
+		box-shadow: 15px 15px 1px #4B0082;
 	}
 	#center {
 		display: block;
@@ -120,8 +124,8 @@ session_start();
 		<form method="post">
 			<div id="title">Login</div>
 
-			<input id="text" type="text" name="user_name" placeholder="Username" onfocus="this.placeholder=''" onblur="this.placeholder='Enter your username'"><br><br>
-			<input id="text" type="password" name="password" placeholder="Password" onfocus="this.placeholder=''" onblur="this.placeholder='Enter your password'"><br><br><br>
+			<input id="text" type="text" name="user_name" placeholder="  Username" onfocus="this.placeholder=''" onblur="this.placeholder='Username'"><br><br>
+			<input id="text" type="password" name="password" placeholder="  Password" onfocus="this.placeholder=''" onblur="this.placeholder='Password'"><br><br><br>
 
 			<input id="button" type="submit" value="Login"><br><br>
 		</form>

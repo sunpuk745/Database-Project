@@ -48,8 +48,10 @@ echo "<style>
 table {
     margin: auto;
     border-collapse: collapse;
+    box-shadow: 15px 15px 1px #4B0082;
     width: 80%;
     background-color: white;
+    margin-bottom: 80px;
   }
   th, td {
     padding: 18px;
@@ -110,13 +112,14 @@ table {
   img {
     border-radius: 50px;
     border: 5px solid white;
+    box-shadow: 15px 15px 1px #4B0082;
   }
   
 </style>";
 
 echo "<table>";
 echo "<img src='volleyball.jpg' width='500' class='center' vspace='30'>";
-echo "<h1 style='text-align: center; color:white; font-size:50px; font-family:verdana; text-shadow: 4px 4px black;'>Volleyball Schedule</h1>";
+echo "<h1 style='text-align: center; color: white; font-size:50px; font-family:verdana; text-shadow: 4px 4px black;'>Volleyball Schedule</h1>";
 echo "<tr><th>Match ID</th><th>Date</th><th>Time</th><th>Team 1</th><th>Players</th><th>Team 2</th><th>Players</th><th>Result</th></tr>";
 
 while ($row = mysqli_fetch_assoc($result)) {
