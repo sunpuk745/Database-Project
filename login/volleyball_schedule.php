@@ -1,7 +1,8 @@
-<?php include "style.php";
+<?php
 
 session_start();
 
+    include "style.php";
     include("connection.php");
     include("function.php");
 
@@ -42,14 +43,6 @@ $result = mysqli_query($conn_volleyball, $sql);
 if (!$result) {
   die("Error: " . $sql . "<br>" . mysqli_error($conn));
 }
-
-echo "<style>
-img {
-  border-radius: 50px;
-  border: 5px solid white;
-  box-shadow: 15px 15px 1px #4B0082;
-}
-</style>";
 
 function getTeamColor($team_name) {
   switch ($team_name) {

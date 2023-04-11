@@ -1,4 +1,9 @@
 <style>
+img {
+  border-radius: 50px;
+  border: 5px solid white;
+  box-shadow: 15px 15px 1px #4B0082;
+}
 table {
     margin: auto;
     border-collapse: collapse;
@@ -104,11 +109,9 @@ table {
     border-radius: 4px;
     cursor: pointer;
   }
-  
   .form-container button[type=submit]:hover {
     background-color: #3e8e41;
   }
-  
   .form-container .btn.cancel {
     background-color: #f44336;
     color: white;
@@ -117,11 +120,9 @@ table {
     border-radius: 4px;
     cursor: pointer;
   }
-  
   .form-container .btn.cancel:hover {
     background-color: #cc2e2e;
   }
-  
   .form-container h1 {
     text-align: center;
     font-family:verdana;
@@ -176,6 +177,39 @@ table {
   .logout-button:focus {
     outline: none;
     box-shadow: none;
+  }
+  .filter-form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+  }
+  .filter-form label {
+    font-size: 18px;
+    margin-right: 10px;
+  }
+  .filter-form input[type=date] {
+    padding: 10px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  .filter-form button[type=submit] {
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+  } 
+  .filter-form button[type=submit]:hover {
+    background-color: #2980b9;
+  }
+  .filter-form input[type=date]:focus {
+    outline: none;
+    border-color: #2980b9;
   }
   .center {
     display: block;

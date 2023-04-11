@@ -1,7 +1,8 @@
-<?php include "style.php";
+<?php 
 
 session_start();
 
+    include "style.php";
     include("connection.php");
     include("function.php");
 
