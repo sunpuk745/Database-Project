@@ -113,10 +113,32 @@ table {
     outline: none;
     box-shadow: none;
   }
+  .color-square {
+    display: inline-block;
+    height: 20px;
+    width: 40px;
+    background-color: red;
+    border-radius: 5px;
+  }
 </style>";
 
+function getTeamColor($team_name) {
+  switch ($team_name) {
+    case "Red":
+      return "red";
+    case "Blue":
+      return "blue";
+    case "Yellow":
+      return "yellow";
+    case "Green":
+      return "green";
+    default:
+      return "white";
+  }
+}
+
 echo "<table>";
-echo "<img src='basketball.jpg' width='500' class='center' vspace='30'>";
+echo "<img src='football.jpg' width='500' class='center' vspace='30'>";
 echo "<h1 style='text-align: center; color:white; font-size:50px; font-family:verdana; text-shadow: 4px 4px black;'>Basketball Schedule</h1>";
 echo "<tr><th>Match ID</th><th>Date</th><th>Time</th><th>Team 1</th><th>Players</th><th>Team 2</th><th>Players</th><th>Result</th></tr>";
 
@@ -125,9 +147,9 @@ while ($row = mysqli_fetch_assoc($result)) {
   echo "<td>" . $row['match_id'] . "</td>";
   echo "<td>" . date("d F Y", strtotime($row['date'])) . "</td>";
   echo "<td>" . date("H:i", strtotime($row['time'])) . "</td>";
-  echo "<td>" . $row['team1_name'] . "</td>";
+  echo "<td>" . $row['team1_name'] . " <span class='color-square' style='background-color:" . getTeamColor($row['team1_name']) . ";'></span></td>";
   echo "<td><button class='players-button' onclick=\"showTeamPlayers('" . $row['team1_players'] . "')\">View</button></td>";
-  echo "<td>" . $row['team2_name'] . "</td>";
+  echo "<td>" . $row['team2_name'] . " <span class='color-square' style='background-color:" . getTeamColor($row['team2_name']) . ";'></span></td>";
   echo "<td><button class='players-button' onclick=\"showTeamPlayers('" . $row['team2_players'] . "')\">View</button></td>";
   echo "<td>" . $row['result'] . "</td>";
   echo "</tr>";

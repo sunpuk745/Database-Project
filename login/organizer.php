@@ -257,10 +257,32 @@ table {
     margin-left: auto;
     margin-right: auto;
   }
+  .color-square {
+    display: inline-block;
+    height: 20px;
+    width: 40px;
+    background-color: red;
+    border-radius: 5px;
+  }
 </style>";
+
+function getTeamColor($team_name) {
+  switch ($team_name) {
+    case "Red":
+      return "red";
+    case "Blue":
+      return "blue";
+    case "Yellow":
+      return "yellow";
+    case "Green":
+      return "green";
+    default:
+      return "white";
+  }
+}
 // display the schedules
 echo "<img src='sportsday.png' width='500' class='center' vspace='30'>";
-echo "<h1 style='text-align: center; color:white; font-size:50px; font-family:verdana; text-shadow: 4px 4px black;'>Organizer Schedule</h1>";
+echo "<h1 style='text-align: center; color:white; font-size:50px; font-family:verdana; text-shadow: 4px 4px black;'>Organizer Page</h1>";
 
 // display football schedules
 echo "<h2 style='text-align: center; color:white; font-size:25px; font-family:verdana; text-shadow: 4px 4px black;'>Football Schedule</h2>";
@@ -273,9 +295,9 @@ while ($row = mysqli_fetch_assoc($result_football)) {
     echo "<td>" . $row['match_id'] . "</td>";
     echo "<td>" . date("d F Y", strtotime($row['date'])) . "</td>";
     echo "<td>" . date("H:i", strtotime($row['time'])) . "</td>";
-    echo "<td>" . $row['team1_name'] . "</td>";
+    echo "<td>" . $row['team1_name'] . " <span class='color-square' style='background-color:" . getTeamColor($row['team1_name']) . ";'></span></td>";
     echo "<td><button class='players-button' onclick=\"showTeamPlayers('" . $row['team1_players'] . "')\">View</button></td>";
-    echo "<td>" . $row['team2_name'] . "</td>";
+    echo "<td>" . $row['team2_name'] . " <span class='color-square' style='background-color:" . getTeamColor($row['team2_name']) . ";'></span></td>";
     echo "<td><button class='players-button' onclick=\"showTeamPlayers('" . $row['team2_players'] . "')\">View</button></td>";
     echo "<td>" . $row['result'] . "</td>";
     echo "<td><button class ='result-button' onclick=\"openResultForm('" . $row['match_id'] . "', '" . $database_name . "')\">Change Match Result</button></td>";
@@ -305,9 +327,9 @@ while ($row = mysqli_fetch_assoc($result_volleyball)) {
     echo "<td>" . $row['match_id'] . "</td>";
     echo "<td>" . date("d F Y", strtotime($row['date'])) . "</td>";
     echo "<td>" . date("H:i", strtotime($row['time'])) . "</td>";
-    echo "<td>" . $row['team1_name'] . "</td>";
+    echo "<td>" . $row['team1_name'] . " <span class='color-square' style='background-color:" . getTeamColor($row['team1_name']) . ";'></span></td>";
     echo "<td><button class='players-button' onclick=\"showTeamPlayers('" . $row['team1_players'] . "')\">View</button></td>";
-    echo "<td>" . $row['team2_name'] . "</td>";
+    echo "<td>" . $row['team2_name'] . " <span class='color-square' style='background-color:" . getTeamColor($row['team2_name']) . ";'></span></td>";
     echo "<td><button class='players-button' onclick=\"showTeamPlayers('" . $row['team2_players'] . "')\">View</button></td>";
     echo "<td>" . $row['result'] . "</td>";
     echo "<td><button class ='result-button' onclick=\"openResultForm('" . $row['match_id'] . "', '" . $database_name . "')\">Change Match Result</button></td>";
@@ -337,9 +359,9 @@ while ($row = mysqli_fetch_assoc($result_basketball)) {
     echo "<td>" . $row['match_id'] . "</td>";
     echo "<td>" . date("d F Y", strtotime($row['date'])) . "</td>";
     echo "<td>" . date("H:i", strtotime($row['time'])) . "</td>";
-    echo "<td>" . $row['team1_name'] . "</td>";
+    echo "<td>" . $row['team1_name'] . " <span class='color-square' style='background-color:" . getTeamColor($row['team1_name']) . ";'></span></td>";
     echo "<td><button class='players-button' onclick=\"showTeamPlayers('" . $row['team1_players'] . "')\">View</button></td>";
-    echo "<td>" . $row['team2_name'] . "</td>";
+    echo "<td>" . $row['team2_name'] . " <span class='color-square' style='background-color:" . getTeamColor($row['team2_name']) . ";'></span></td>";
     echo "<td><button class='players-button' onclick=\"showTeamPlayers('" . $row['team2_players'] . "')\">View</button></td>";
     echo "<td>" . $row['result'] . "</td>";
     echo "<td><button class ='result-button' onclick=\"openResultForm('" . $row['match_id'] . "', '" . $database_name . "')\">Change Match Result</button></td>";
