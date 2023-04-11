@@ -1,4 +1,4 @@
-<?php
+<?php include "style.php";
 
 session_start();
 
@@ -89,112 +89,6 @@ $sql_basketball = "SELECT matches.match_id, matches.date, matches.time, team1.te
                         ORDER BY matches.date, matches.time;";
 
 $result_basketball = mysqli_query($conn_basketball, $sql_basketball);
-// Display the match schedule in a table format
-echo "<style>
-table {
-    margin: auto;
-    border-collapse: collapse;
-    box-shadow: 15px 15px 1px #4B0082;
-    width: 80%;
-    background-color: white;
-    margin-bottom: 80px;
-  }
-  th, td {
-    padding: 18px;
-    text-align: center;
-    border-bottom: 1px solid #ddd;
-    font-family:verdana;
-  }
-  th {
-    background-color: black;
-    color: white;
-  }
-  .players-button {
-    background-color: #FFD524;
-    border: none;
-    color: black;
-    padding: 10px 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    font-weight: bold;
-    border-radius: 5px;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
-    transition: background-color 0.3s ease;
-  }
-  .players-button:hover {
-    background-color: #ECB602;
-  }
-  .players-button:focus {
-    outline: none;
-    box-shadow: 0px 0px 5px #4CAF50;
-  }
-  .center {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  .logout-button {
-    background-color: red; 
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    font-size: 16px;
-    border-radius: 5px;
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-}
-  .logout-button:hover {
-    background-color: darkred;
-  }
-  
-  .logout-button:focus {
-    outline: none;
-    box-shadow: none;
-  }
-  .filter-form {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    margin: 20px 0;
-  }
-  .filter-form label {
-    font-size: 18px;
-    margin-right: 10px;
-  }
-  .filter-form input[type=date] {
-    padding: 10px;
-    border: 2px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
-  }
-  .filter-form button[type=submit] {
-    background-color: #3498db;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-  } 
-  .filter-form button[type=submit]:hover {
-    background-color: #2980b9;
-  }
-  .filter-form input[type=date]:focus {
-    outline: none;
-    border-color: #2980b9;
-  }
-  .color-square {
-    display: inline-block;
-    height: 25px;
-    width: 40px;
-    background-color: red;
-    border-radius: 5px;
-  }
-</style>";
 
 function getTeamColor($team_name) {
   switch ($team_name) {
