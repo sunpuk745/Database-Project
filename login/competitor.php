@@ -216,6 +216,7 @@ table {
     margin-left: auto;
 		margin-right: auto;
     width: 1300px;
+    height: 30px;
     top: 10%;
     left: 50%;
     text-align: center;
@@ -224,6 +225,7 @@ table {
     border-radius: 5px;
     box-shadow: 15px 15px 1px #4B0082;
     background-color: #f9f9f9;
+    margin-bottom: 80px;
 
   }
 </style>";
