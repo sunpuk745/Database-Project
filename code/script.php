@@ -113,7 +113,7 @@
             createTableRows($schedule, $database_name);
             echo "</table>";
             echo "<br></br>";
-            echo "<button class='form-button' onclick=\"openForm('{$database_name}')\">Add New {$title} Match Schedule</button>";
+            echo "<button class='form-button' onclick=\"openForm('{$database_name}')\">Add New {$title}</button>";
         }
 
         function getTeamColor($team_name) {

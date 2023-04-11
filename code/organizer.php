@@ -26,7 +26,7 @@ $conn_football = mysqli_connect($servername, $username, $password, $dbname);
 if (!$conn_football) {
     die("Connection failed: " . mysqli_connect_error());
 }
-      
+
 // fetch football schedules
 $result_football = fetch_tournament_schedules("football_tournament", $servername, $username, $password);
 

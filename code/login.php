@@ -52,7 +52,7 @@ session_start();
 			echo "<script>alert('Incorrect username or password!');</script>";
 		}else
 		{
-			echo "<script>alert('Please enter valid information!');</script>";;
+			echo "<script>alert('Please enter valid information!');</script>";
 		}
 	}
 
