@@ -58,7 +58,7 @@ function getTeamColor($team_name) {
 }
 
 echo "<table>";
-echo "<img src='football.jpg' width='500' class='center' vspace='30'>";
+echo "<img src='basketball.jpg' width='500' class='center' vspace='30'>";
 echo "<h1 style='text-align: center; color:white; font-size:50px; font-family:verdana; text-shadow: 4px 4px black;'>Basketball Schedule</h1>";
 echo "<tr><th>Match ID</th><th>Date</th><th>Time</th><th>Team 1</th><th>Players</th><th>Team 2</th><th>Players</th><th>Result</th></tr>";
 
