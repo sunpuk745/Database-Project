@@ -49,18 +49,10 @@ session_start();
 					}
 				}
 			}
-			
-<<<<<<< Updated upstream
 			echo "<h1 style='text-align: center; color: #FFD524; font-size:20px; font-family:verdana;'>wrong username or password!</h1>";
 		}else
 		{
 			echo "<h1 style='text-align: center; color: #FFD524; font-size:20px; font-family:verdana;'>wrong username or password!</h1>";
-=======
-			echo "<script>alert('Incorrect username or password!');</script>";
-		}else
-		{
-			echo "<script>alert('Please enter valid information!');</script>";;
->>>>>>> Stashed changes
 		}
 	}
 
@@ -131,15 +123,8 @@ session_start();
 		<img src='sportsday.png' width='200' id='center' vspace='30'>
 		<form method="post">
 			<div id="title">Login</div>
-
-<<<<<<< Updated upstream
-			<input id="text" type="text" name="user_name" placeholder="  Username" onfocus="this.placeholder=''" onblur="this.placeholder='Username'"><br><br>
-			<input id="text" type="password" name="password" placeholder="  Password" onfocus="this.placeholder=''" onblur="this.placeholder='Password'"><br><br><br>
-
-=======
 			<input id="text" type="text" name="user_name" placeholder="Username" onfocus="this.placeholder=''" onblur="this.placeholder='Enter your username'"><br><br>
 			<input id="text" type="password" name="password" placeholder="Password" onfocus="this.placeholder=''" onblur="this.placeholder='Enter your password'"><br><br><br>
->>>>>>> Stashed changes
 			<input id="button" type="submit" value="Login"><br><br>
 		</form>
 	</div>

@@ -139,13 +139,8 @@ function getTeamColor($team_name) {
 }
 
 echo "<table>";
-<<<<<<< Updated upstream
 echo "<img src='volleyball.jpg' width='500' class='center' vspace='30'>";
 echo "<h1 style='text-align: center; color: white; font-size:50px; font-family:verdana; text-shadow: 4px 4px black;'>Volleyball Schedule</h1>";
-=======
-echo "<img src='football.jpg' width='500' class='center' vspace='30'>";
-echo "<h1 style='text-align: center; color:white; font-size:50px; font-family:verdana; text-shadow: 4px 4px black;'>Volleyball Schedule</h1>";
->>>>>>> Stashed changes
 echo "<tr><th>Match ID</th><th>Date</th><th>Time</th><th>Team 1</th><th>Players</th><th>Team 2</th><th>Players</th><th>Result</th></tr>";
 
 while ($row = mysqli_fetch_assoc($result)) {
