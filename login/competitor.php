@@ -100,7 +100,7 @@ $result_basketball = mysqli_query($conn_basketball, $sql_basketball);
 echo "<img src='sportsday.png' width='500' class='center' vspace='30'>";
 echo "<h1 style='text-align: center; color:white; font-size:50px; font-family:verdana; text-shadow: 4px 4px black;'>Competitor Schedule</h1>";
 
-echo "<div class='box'>
+echo "<div class='box_filter'>
       <form method='get' class='filter-form' style='text-align: center;'>
         <label for='player_filter' style='color: black';>กรองโดยชื่อนักกีฬา :</label>
         <input type='text' id='player_filter' name='player_filter' value='$player_filter' placeholder='กรอกชื่อนักกีฬา'>
@@ -108,9 +108,9 @@ echo "<div class='box'>
       </form>";
 
 echo "<form method='get' class='filter-form' style='text-align: center;'>
-        <label for='player_filter' style='color: black';>กรองโดยชื่อนักกีฬา:</label>
+        <label for='player_filter' style='color: black';>กรองโดยเลือกนักกีฬา:</label>
         <select id='player_filter' name='player_filter'>
-            <option value=''>--ทุกนักกีฬา--</option>";
+            <option value=''>-- นักกีฬาทุกคน --</option>";
             $sql_players = "SELECT DISTINCT player_name FROM (
                                 SELECT player_name FROM football_tournament.players
                                 UNION

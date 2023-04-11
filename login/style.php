@@ -177,11 +177,12 @@ table {
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    margin: 20px 0;
+    margin: 20px 3;
   }
   .filter-form select {
+    width: 200px;
     font-size: 16px;
-    padding: 10px;
+    padding: 10px;  
     border-radius: 5px;
     border: 2px solid #008CBA;
     }
@@ -230,6 +231,22 @@ table {
 		margin-right: auto;
     width: 1300px;
     height: 80px;
+    top: 10%;
+    left: 50%;
+    text-align: center;
+    padding: 30px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 15px 15px 1px #4B0082;
+    background-color: #f9f9f9;
+    margin-bottom: 80px;
+
+  }
+  .box_filter{
+    margin-left: auto;
+		margin-right: auto;
+    width: 1300px;
+    height: 40px;
     top: 10%;
     left: 50%;
     text-align: center;
